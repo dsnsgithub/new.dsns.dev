@@ -73,7 +73,7 @@ export default function Home() {
 						<div className="bg-lochmara-100 p-8 shadow-xl rounded-xl mt-4 border-lochmara-300 border-4 inline-block min-w-full">
 							<div className="lg:flex lg:flex-row lg:items-center">
 								<Image src={hackathonImage} alt="Hackathon Submission Image" width={400} />
-								<div className="ml-12">
+								<div className="lg:ml-12">
 									<h3 className="text-4xl mb-2 font-bold">Recycling Game</h3>
 									<h4>
 										This project won Top 3 in the Coding for SDG 2023 Hackathon. The topic of the hackathon was UN SDG #13 Climate Action, with the hackathon hosting 91
