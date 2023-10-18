@@ -1,118 +1,111 @@
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import { faCloudflare, faGithub, faJsSquare, faPython, faYoutube, faLinux, faGitAlt, faReact } from "@fortawesome/free-brands-svg-icons";
 
-const inter = Inter({ subsets: ['latin'] })
+import Image from "next/image";
+import scheduliImage from "../../public/images/scheduli.png";
+import hackathonImage from "../../public/images/hackathon.png";
+
+import chromocraftImage from "../../public/images/chromocraft.png";
+import truthBeToldImage from "../../public/images/TruthBeTold.jpg";
+import onlyEggrollsImage from "../../public/images/onlyeggrolls.png";
 
 export default function Home() {
-  return (
-    <main
-      className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
-    >
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/pages/index.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
+	return (
+		<div>
+			<div className="lg:flex lg:flex-row justify-evenly items-center">
+				<div className="flex flex-col justify-center lg:p-8 shadow-xl rounded-xl mt-4 bg-lochmara-200 lg:m-8 m-2">
+					<div className="bg-lochmara-100 shadow-xl rounded-xl mb-4 p-6 border-lochmara-300 border-4">
+						<div className="text-4xl font-bold mb-4">Who am I?</div>
+						<div className="text-xl">A full-stack developer with an interest in Minecraft.</div>
+					</div>
 
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700/10 after:dark:from-sky-900 after:dark:via-[#0141ff]/40 before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+					<div className="bg-lochmara-100 shadow-xl rounded-xl mt-4 p-6 border-lochmara-300 border-4">
+						<div className="text-4xl font-bold mb-4">Socials</div>
 
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
+						<div className="flex justify-evenly">
+							<a href="https://github.com/dsnsgithub">
+								<FontAwesomeIcon icon={faGithub} size="2x"></FontAwesomeIcon>
+							</a>
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
+							<a href="https://www.youtube.com/@DSNShypixel">
+								<FontAwesomeIcon icon={faYoutube} size="2x"></FontAwesomeIcon>
+							</a>
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Discover and deploy boilerplate example Next.js&nbsp;projects.
-          </p>
-        </a>
+							<a href="mailto:dsns@dsns.dev">
+								<FontAwesomeIcon icon={faEnvelope} size="2x"></FontAwesomeIcon>
+							</a>
+						</div>
+					</div>
 
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+					<div className="bg-lochmara-100 shadow-xl rounded-xl mt-4 p-6 border-lochmara-300 border-4">
+						<div className="text-4xl font-bold mb-4">Skills</div>
+
+						<div className="flex justify-evenly flex-wrap">
+							<FontAwesomeIcon icon={faCloudflare} size="2x"></FontAwesomeIcon>
+							<FontAwesomeIcon icon={faJsSquare} size="2x"></FontAwesomeIcon>
+							<FontAwesomeIcon icon={faLinux} size="2x"></FontAwesomeIcon>
+							<FontAwesomeIcon icon={faPython} size="2x"></FontAwesomeIcon>
+							<FontAwesomeIcon icon={faGitAlt} size="2x"></FontAwesomeIcon>
+							<FontAwesomeIcon icon={faReact} size="2x"></FontAwesomeIcon>
+						</div>
+					</div>
+				</div>
+
+				<div className="flex flex-col justify-center lg:p-8 p-4 shadow-xl rounded-xl bg-lochmara-200 w-full m-2 mt-8 lg:m-8">
+					<div className="text-4xl font-bold mb-4">Major Projects</div>
+
+					<a href="https://scheduli.dsns.dev/">
+						<div className="bg-lochmara-100 p-8 shadow-xl rounded-xl border-lochmara-300 border-4 inline-block min-w-full">
+							<h3 className="text-2xl font-bold">Scheduli</h3>
+							<h4>Scheduli is a general-purpose schedule app avaliable on iOS and Android that keeps you informed about your daily schedule, even during the most chaotic days.</h4>
+							<Image src={scheduliImage} alt="Scheduli Image" width={400} />
+						</div>
+					</a>
+
+					<a href="https://github.com/dsnsgithub/sdghackathon">
+						<div className="bg-lochmara-100 p-8 shadow-xl rounded-xl mt-4 border-lochmara-300 border-4 inline-block min-w-full">
+							<h3 className="text-2xl font-bold">Recycling Game - Top #3 Hackathon Submission</h3>
+							<h4>This project won Top 3 in the Coding for SDG 2023 Hackathon. The topic of the hackathon was UN SDG #13 Climate Action, with the hackathon hosting 91 participants.</h4>
+							<Image src={hackathonImage} alt="Hackathon Submission Image" width={400} />
+						</div>
+					</a>
+				</div>
+			</div>
+
+			<div className="lg:p-8 p-4 shadow-xl rounded-xl bg-lochmara-200 m-2 mt-8 lg:m-8">
+				<div className="text-4xl font-bold mb-4">Past Experience</div>
+				<div className="flex-1 grid md:grid-cols-2 xl:grid-cols-2 gap-4 md:gap-8 ">
+					<a href="https://github.com/dsnsgithub/chromocraft.net">
+						<div className="bg-lochmara-100 p-8 shadow-xl rounded-xl mt-4 border-lochmara-300 border-4 inline-block min-w-full">
+							<h3 className="text-2xl font-bold">chromocraft.net</h3>
+							<h4>Chromocraft is a public Minecraft SMP that was hosted from 2018-2019 with 150+ members.</h4>
+							<Image src={chromocraftImage} alt="Chromocraft Image" width={600} />
+						</div>
+					</a>
+
+					<a href="https://github.com/dsnsgithub/truthBeTold">
+						<div className="bg-lochmara-100 p-8 shadow-xl rounded-xl mt-4 border-lochmara-300 border-4 inline-block min-w-full">
+							<h3 className="text-2xl font-bold">TruthBeTold</h3>
+							<h4>TruthBeTold is a browser extension designed to detect misinformation using AI.</h4>
+							<Image src={truthBeToldImage} alt="TruthBeTold Image" width={350} />
+						</div>
+					</a>
+
+					<a href="https://onlyeggrolls.com/">
+						<div className="bg-lochmara-100 p-8 shadow-xl rounded-xl mt-4 border-lochmara-300 border-4 inline-block min-w-full">
+							<h3 className="text-2xl font-bold">onlyeggrolls.com</h3>
+							<h4>
+								OnlyEggrolls is a POC for a shopping website, built completely in vanilla JS. It has a functional backend, allowing users to create an account, store items in a
+								shopping cart, and order eggrolls.
+							</h4>
+							<Image src={onlyEggrollsImage} alt="OnlyEggrolls Image" width={350} />
+						</div>
+					</a>
+				</div>
+			</div>
+
+			
+		</div>
+	);
 }

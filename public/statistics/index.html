@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" class="has-navbar-fixed-top">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Hypixel Level Statistics</title>
+
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+	<link rel="stylesheet" href="static.css">
+
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+</head>
+
+<body>
+	<div class="section">
+		<div class="columns">
+			<div class="column is-two-thirds">
+				<div class="box">
+					<div id="chart" style="height: 50vh;"></div>
+				</div>
+			</div>
+
+			<div class="column">
+				<div class="box">
+					<h2 class="title">Add Players:</h2>
+
+					<input type="text" id="ignInput" class="input">
+					<button class="button is-primary" style="margin-top:20px;" id="ignSubmit">Submit</button>
+					<button class="button is-danger" style="margin-top:20px;" id="differenceButton">Disable Difference Mode</button>
+				</div>
+
+				<div class="box">
+					<h2 class="title">Current Players:</h2>
+					<div class="columns is-multiline" id="player-list">
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="index.js"></script>
+</body>
+
+</html>
