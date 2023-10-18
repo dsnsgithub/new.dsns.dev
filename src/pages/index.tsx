@@ -56,18 +56,31 @@ export default function Home() {
 					<div className="text-4xl font-bold mb-4">Major Projects</div>
 
 					<a href="https://scheduli.dsns.dev/">
-						<div className="bg-lochmara-100 p-8 shadow-xl rounded-xl border-lochmara-300 border-4 inline-block min-w-full">
-							<h3 className="text-2xl font-bold">Scheduli</h3>
-							<h4>Scheduli is a general-purpose schedule app avaliable on iOS and Android that keeps you informed about your daily schedule, even during the most chaotic days.</h4>
-							<Image src={scheduliImage} alt="Scheduli Image" width={400} />
+						<div className="bg-lochmara-100 p-8 shadow-xl rounded-xl mt-4 border-lochmara-300 border-4 inline-block min-w-full">
+							<div className="lg:flex lg:flex-row lg:items-center">
+								<div className="mr-12">
+									<h3 className="text-4xl mb-2 font-bold">Scheduli</h3>
+									<h4>
+										Scheduli is a general-purpose schedule app avaliable on iOS and Android that keeps you informed about your daily schedule, even during the most chaotic days.
+									</h4>
+								</div>
+								<Image src={scheduliImage} alt="Scheduli Image" width={400} />
+							</div>
 						</div>
 					</a>
 
 					<a href="https://github.com/dsnsgithub/sdghackathon">
 						<div className="bg-lochmara-100 p-8 shadow-xl rounded-xl mt-4 border-lochmara-300 border-4 inline-block min-w-full">
-							<h3 className="text-2xl font-bold">Recycling Game - Top #3 Hackathon Submission</h3>
-							<h4>This project won Top 3 in the Coding for SDG 2023 Hackathon. The topic of the hackathon was UN SDG #13 Climate Action, with the hackathon hosting 91 participants.</h4>
-							<Image src={hackathonImage} alt="Hackathon Submission Image" width={400} />
+							<div className="lg:flex lg:flex-row lg:items-center">
+								<Image src={hackathonImage} alt="Hackathon Submission Image" width={400} />
+								<div className="ml-12">
+									<h3 className="text-4xl mb-2 font-bold">Recycling Game</h3>
+									<h4>
+										This project won Top 3 in the Coding for SDG 2023 Hackathon. The topic of the hackathon was UN SDG #13 Climate Action, with the hackathon hosting 91
+										participants.
+									</h4>
+								</div>
+							</div>
 						</div>
 					</a>
 				</div>
@@ -80,7 +93,9 @@ export default function Home() {
 						<div className="bg-lochmara-100 p-8 shadow-xl rounded-xl mt-4 border-lochmara-300 border-4 inline-block min-w-full">
 							<h3 className="text-2xl font-bold">chromocraft.net</h3>
 							<h4>Chromocraft is a public Minecraft SMP that was hosted from 2018-2019 with 150+ members.</h4>
-							<Image src={chromocraftImage} alt="Chromocraft Image" width={600} />
+							<div className="flex justify-center mt-3">
+								<Image src={chromocraftImage} alt="Chromocraft Image" width={600} />
+							</div>
 						</div>
 					</a>
 
@@ -88,7 +103,9 @@ export default function Home() {
 						<div className="bg-lochmara-100 p-8 shadow-xl rounded-xl mt-4 border-lochmara-300 border-4 inline-block min-w-full">
 							<h3 className="text-2xl font-bold">TruthBeTold</h3>
 							<h4>TruthBeTold is a browser extension designed to detect misinformation using AI.</h4>
-							<Image src={truthBeToldImage} alt="TruthBeTold Image" width={350} />
+							<div className="flex justify-center mt-3">
+								<Image src={truthBeToldImage} alt="TruthBeTold Image" width={350} />
+							</div>
 						</div>
 					</a>
 
@@ -99,13 +116,13 @@ export default function Home() {
 								OnlyEggrolls is a POC for a shopping website, built completely in vanilla JS. It has a functional backend, allowing users to create an account, store items in a
 								shopping cart, and order eggrolls.
 							</h4>
-							<Image src={onlyEggrollsImage} alt="OnlyEggrolls Image" width={350} />
+							<div className="flex justify-center mt-3">
+								<Image src={onlyEggrollsImage} alt="OnlyEggrolls Image" width={350} />
+							</div>
 						</div>
 					</a>
 				</div>
 			</div>
-
-			
 		</div>
 	);
 }
