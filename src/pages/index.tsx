@@ -58,7 +58,7 @@ export default function Home() {
 					<a href="https://scheduli.dsns.dev/">
 						<div className="bg-lochmara-100 p-8 shadow-xl rounded-xl mt-4 border-lochmara-300 border-4 inline-block min-w-full">
 							<div className="lg:flex lg:flex-row lg:items-center">
-								<div className="mr-12">
+								<div className="lg:mr-12">
 									<h3 className="text-4xl mb-2 font-bold">Scheduli</h3>
 									<h4>
 										Scheduli is a general-purpose schedule app avaliable on iOS and Android that keeps you informed about your daily schedule, even during the most chaotic days.
@@ -71,8 +71,7 @@ export default function Home() {
 
 					<a href="https://github.com/dsnsgithub/sdghackathon">
 						<div className="bg-lochmara-100 p-8 shadow-xl rounded-xl mt-4 border-lochmara-300 border-4 inline-block min-w-full">
-							<div className="lg:flex lg:flex-row lg:items-center">
-								<Image src={hackathonImage} alt="Hackathon Submission Image" width={400} />
+							<div className="lg:flex lg:items-center lg:flex-row-reverse">
 								<div className="lg:ml-12">
 									<h3 className="text-4xl mb-2 font-bold">Recycling Game</h3>
 									<h4>
@@ -80,6 +79,7 @@ export default function Home() {
 										participants.
 									</h4>
 								</div>
+								<Image src={hackathonImage} alt="Hackathon Submission Image" width={400} />
 							</div>
 						</div>
 					</a>
