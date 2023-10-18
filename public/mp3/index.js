@@ -1,5 +1,3 @@
-const { createFFmpeg } = FFmpeg;
-
 const downloadStatus = document.getElementById("downloadStatus");
 const conversionStatus = document.getElementById("conversionStatus");
 
@@ -59,38 +57,6 @@ async function convertChunkToArray(chunks, receivedLength) {
 	return chunksAll;
 }
 
-async function downloadFile(blob, fileName) {
-	const url = URL.createObjectURL(blob);
-	const a = document.createElement("a");
-	a.href = url;
-	a.download = fileName;
-	a.click();
-	URL.revokeObjectURL(url);
-}
-
-async function convertFileFormat(format, type, youtubeID) {
-	const [chunks, receivedLength, fileName] = await downloadAPI(`/api/youtube/${youtubeID}`);
-	const chunksAll = await convertChunkToArray(chunks, receivedLength);
-
-	const ffmpeg = createFFmpeg({ log: true });
-	await ffmpeg.load();
-
-	ffmpeg.setProgress(({ ratio }) => {
-		const percent = round(ratio * 100, 2);
-		conversionStatus.innerText = percent + "%";
-	});
-
-	ffmpeg.FS("writeFile", `audio.webm`, chunksAll);
-	await ffmpeg.run("-i", `audio.webm`, `audio.${format}`);
-	const output = ffmpeg.FS("readFile", `audio.${format}`);
-
-	const blob = new Blob([output], { type: type });
-	await downloadFile(blob, `${fileName}.${format}`);
-
-	ffmpeg.FS("unlink", `audio.webm`);
-	ffmpeg.FS("unlink", `audio.${format}`);
-}
-
 async function downloadMP3() {
 	try {
 		const downloadLink = document.getElementById("downloadLink").value;
@@ -114,38 +80,16 @@ async function downloadMP3() {
 		const fileType = document.getElementById("fileType").value;
 
 		const mp4play = document.getElementById("mp4play");
-		const mp3play = document.getElementById("mp3play");
 
-		if (fileType.includes("mp4")) {
-			const [chunks, receivedLength, fileName] = await downloadAPI(`/api/youtubeVideo/${youtubeID}`);
-			const chunksAll = await convertChunkToArray(chunks, receivedLength);
-			const result = JSON.parse(new TextDecoder("utf-8").decode(chunksAll));
+		const [chunks, receivedLength, fileName] = await downloadAPI(`/api/youtubeVideo/${youtubeID}`);
+		const chunksAll = await convertChunkToArray(chunks, receivedLength);
+		const result = JSON.parse(new TextDecoder("utf-8").decode(chunksAll));
 
-			mp4play.src = result["highest"]["url"];
-			mp4play.style.display = "block";
-			mp3play.style.display = "none";
-			mp3play.pause();
+		mp4play.src = result["highest"]["url"];
+		mp4play.style.display = "block";
 
-			if (fileType == "mp4audio") window.open(result["highest"]["url"], "_blank");
-			if (fileType == "mp4high") window.open(result["highestvideo"]["url"], "_blank");
-		} else if (fileType == "webm") {
-			const [chunks, receivedLength, fileName] = await downloadAPI(`/api/youtube/${youtubeID}`);
-			const blob = new Blob(chunks);
-
-			mp3play.src = `/api/youtube/${youtubeID}`;
-			mp3play.style.display = "block";
-			mp4play.style.display = "none";
-			mp4play.pause();
-
-			await downloadFile(blob, `${fileName}.webm`);
-		} else {
-			mp3play.src = `/api/youtube/${youtubeID}`;
-			mp3play.style.display = "block";
-			mp4play.style.display = "none";
-			mp4play.pause();
-
-			await convertFileFormat(fileType, `audio/${fileType}`, youtubeID);
-		}
+		if (fileType == "mp4audio") window.open(result["highest"]["url"], "_blank");
+		if (fileType == "mp4high") window.open(result["highestvideo"]["url"], "_blank");
 	} catch (e) {
 		console.error(e);
 	}
