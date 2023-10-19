@@ -57,8 +57,8 @@ export default function Home() {
 
 					<a href="https://scheduli.dsns.dev/">
 						<div className="bg-lochmara-100 p-8 shadow-xl rounded-xl mt-4 border-lochmara-300 border-4 inline-block min-w-full">
-							<div className="lg:flex lg:flex-row lg:items-center">
-								<div className="lg:mr-12">
+							<div className="xl:flex xl:flex-row xl:items-center">
+								<div className="xl:mr-12">
 									<h3 className="text-4xl mb-2 font-bold">Scheduli</h3>
 									<h4>
 										Scheduli is a general-purpose schedule app avaliable on iOS and Android that keeps you informed about your daily schedule, even during the most chaotic days.
@@ -71,8 +71,8 @@ export default function Home() {
 
 					<a href="https://github.com/dsnsgithub/sdghackathon">
 						<div className="bg-lochmara-100 p-8 shadow-xl rounded-xl mt-4 border-lochmara-300 border-4 inline-block min-w-full">
-							<div className="lg:flex lg:items-center lg:flex-row-reverse">
-								<div className="lg:ml-12">
+							<div className="xl:flex xl:items-center xl:flex-row-reverse">
+								<div className="xl:ml-12">
 									<h3 className="text-4xl mb-2 font-bold">Recycling Game</h3>
 									<h4>
 										This project won Top 3 in the Coding for SDG 2023 Hackathon. The topic of the hackathon was UN SDG #13 Climate Action, with the hackathon hosting 91
