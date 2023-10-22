@@ -17,8 +17,8 @@ export default function App({ Component, pageProps }: AppProps) {
 				<meta property="og:title" content="dsns.dev" />
 				<meta property="og:description" content="Check out what I do, and explore some of my projects." />
 				<meta name="description" content="Check out what I do, and explore some of my projects." />
-				<meta property="og:url" content="https://dsns.dev" />
-				<meta property="og:image" content="https://dsns.dev/kirby.png" />
+				<meta property="og:url" content="https://www.dsns.dev" />
+				<meta property="og:image" content="https://www.dsns.dev/kirby.png" />
 			</Head>
 			<main className={"min-h-screen container mx-auto mt-10 " + poppins.className}>
 				<Navbar />
