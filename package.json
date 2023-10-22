@@ -9,9 +9,11 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@types/whois-json": "^2.0.3",
     "next": "13.5.5",
     "react": "^18",
     "react-dom": "^18",
+    "whois-json": "^2.0.4",
     "ytdl-core": "^4.11.5"
   },
   "devDependencies": {
