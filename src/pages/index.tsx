@@ -25,15 +25,15 @@ export default function Home() {
 
 						<div className="flex justify-evenly">
 							<a href="https://github.com/dsnsgithub">
-								<FontAwesomeIcon icon={faGithub} size="2x"></FontAwesomeIcon>
+								<FontAwesomeIcon icon={faGithub} size="2x" title="GitHub - @dsnsgithub"></FontAwesomeIcon>
 							</a>
 
 							<a href="https://www.youtube.com/@DSNShypixel">
-								<FontAwesomeIcon icon={faYoutube} size="2x"></FontAwesomeIcon>
+								<FontAwesomeIcon icon={faYoutube} size="2x" title="Youtube - @DSNSHypixel"></FontAwesomeIcon>
 							</a>
 
 							<a href="mailto:dsns@dsns.dev">
-								<FontAwesomeIcon icon={faEnvelope} size="2x"></FontAwesomeIcon>
+								<FontAwesomeIcon icon={faEnvelope} size="2x" title="Email - dsns@dsns.dev"></FontAwesomeIcon>
 							</a>
 						</div>
 					</div>
@@ -42,12 +42,12 @@ export default function Home() {
 						<div className="text-4xl font-bold mb-4">Skills</div>
 
 						<div className="flex justify-evenly flex-wrap">
-							<FontAwesomeIcon icon={faCloudflare} size="2x"></FontAwesomeIcon>
-							<FontAwesomeIcon icon={faJsSquare} size="2x"></FontAwesomeIcon>
-							<FontAwesomeIcon icon={faLinux} size="2x"></FontAwesomeIcon>
-							<FontAwesomeIcon icon={faPython} size="2x"></FontAwesomeIcon>
-							<FontAwesomeIcon icon={faGitAlt} size="2x"></FontAwesomeIcon>
-							<FontAwesomeIcon icon={faReact} size="2x"></FontAwesomeIcon>
+							<FontAwesomeIcon icon={faCloudflare} size="2x" title="Cloudflare"></FontAwesomeIcon>
+							<FontAwesomeIcon icon={faJsSquare} size="2x" title="Javascript"></FontAwesomeIcon>
+							<FontAwesomeIcon icon={faLinux} size="2x" title="Linux"></FontAwesomeIcon>
+							<FontAwesomeIcon icon={faPython} size="2x" title="Python"></FontAwesomeIcon>
+							<FontAwesomeIcon icon={faGitAlt} size="2x" title="Git"></FontAwesomeIcon>
+							<FontAwesomeIcon icon={faReact} size="2x" title="React"></FontAwesomeIcon>
 						</div>
 					</div>
 				</div>
