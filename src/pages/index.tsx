@@ -29,7 +29,7 @@ export default function Home() {
 							</a>
 
 							<a href="https://www.youtube.com/@DSNShypixel">
-								<FontAwesomeIcon icon={faYoutube} size="2x" title="Youtube - @DSNSHypixel"></FontAwesomeIcon>
+								<FontAwesomeIcon icon={faYoutube} size="2x" title="YouTube - @DSNSHypixel"></FontAwesomeIcon>
 							</a>
 
 							<a href="mailto:dsns@dsns.dev">
@@ -43,7 +43,7 @@ export default function Home() {
 
 						<div className="flex justify-evenly flex-wrap">
 							<FontAwesomeIcon icon={faCloudflare} size="2x" title="Cloudflare"></FontAwesomeIcon>
-							<FontAwesomeIcon icon={faJsSquare} size="2x" title="Javascript"></FontAwesomeIcon>
+							<FontAwesomeIcon icon={faJsSquare} size="2x" title="JavaScript"></FontAwesomeIcon>
 							<FontAwesomeIcon icon={faLinux} size="2x" title="Linux"></FontAwesomeIcon>
 							<FontAwesomeIcon icon={faPython} size="2x" title="Python"></FontAwesomeIcon>
 							<FontAwesomeIcon icon={faGitAlt} size="2x" title="Git"></FontAwesomeIcon>
