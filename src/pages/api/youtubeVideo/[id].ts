@@ -7,15 +7,16 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
 	const info = await ytdl.getInfo(`https://www.youtube.com/watch?v=${id}`);
 
-	let formats = info.formats;
+	const formats = info.formats;
 	formats.sort((a, b) => {
 		return (b.bitrate || 0) - (a.bitrate || 0);
 	});
 
-	formats = formats.filter((video) => video.mimeType && video.mimeType.includes("video/mp4"));
+	const videoFormats = formats.filter((video) => video.mimeType && video.mimeType.includes("video/mp4"));
 
 	return res.json({
-		highestvideo: formats[0],
-		highest: formats.filter((video) => video.hasAudio == true)[0]
+		highestvideo: videoFormats[0],
+		highest: videoFormats.filter((video) => video.hasAudio == true)[0],
+		highestaudio: formats.filter((audio) => audio.mimeType && audio.mimeType.includes("audio/mp4"))[0]
 	});
 }

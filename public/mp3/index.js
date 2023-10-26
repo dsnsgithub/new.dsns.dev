@@ -90,6 +90,7 @@ async function downloadMP3() {
 
 		if (fileType == "mp4audio") window.open(result["highest"]["url"], "_blank");
 		if (fileType == "mp4high") window.open(result["highestvideo"]["url"], "_blank");
+		if (fileType == "mp3") window.open(result["highestaudio"]["url"], "_blank");
 	} catch (e) {
 		console.error(e);
 	}
