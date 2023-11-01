@@ -113,7 +113,7 @@ export default function Home() {
 						<div className="bg-lochmara-100 p-8 shadow-xl rounded-xl mt-4 border-lochmara-300 border-4 inline-block min-w-full">
 							<h3 className="text-2xl font-bold">onlyeggrolls.com</h3>
 							<h4>
-								OnlyEggrolls is a POC for a shopping website, built completely in vanilla JS. It has a functional backend, allowing users to create an account, store items in a
+								OnlyEggrolls is a proof of concept shopping website, built completely in vanilla JS. It has a functional backend, allowing users to create an account, store items in a
 								shopping cart, and order eggrolls.
 							</h4>
 							<div className="flex justify-center mt-3">
