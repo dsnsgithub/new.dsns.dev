@@ -1,5 +1,6 @@
 import Image from "next/image";
 import kirbyIcon from "../../../public/halloweenkirby.svg";
+// import kirbyIcon from "../../../public/kirby.png";
 import Link from "next/link";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -10,6 +11,7 @@ export default function Navbar() {
 		<nav className="mt-8 p-6 flex justify-around items-center bg-lochmara-200 rounded-xl border-lochmara-300 border-4">
 			<Link className="flex items-center" href="/">
 				<Image src={kirbyIcon} alt="Kirby Icon" width="80" />
+				{/* className="rounded-full" */}
 				<h1 className="px-4 text-4xl font-bold hidden lg:inline">dsns.dev</h1>
 			</Link>
 
