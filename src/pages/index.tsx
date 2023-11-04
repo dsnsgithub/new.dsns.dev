@@ -2,13 +2,43 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { faCloudflare, faGithub, faJsSquare, faPython, faYoutube, faLinux, faGitAlt, faReact } from "@fortawesome/free-brands-svg-icons";
 
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import scheduliImage from "../../public/images/scheduli.png";
 import hackathonImage from "../../public/images/hackathon.png";
 
 import chromocraftImage from "../../public/images/chromocraft.png";
 import truthBeToldImage from "../../public/images/TruthBeTold.jpg";
 import onlyEggrollsImage from "../../public/images/onlyeggrolls.png";
+
+function FeatureCard(props: { link: string; title: string; description: string; image: StaticImageData; imageWidth: number; flipped: boolean }) {
+	return (
+		<a href={props.link}>
+			<div className="bg-lochmara-100 p-8 shadow-xl rounded-xl mt-4 border-lochmara-300 border-4 inline-block min-w-full hover:transition hover:ease-in-out duration-500 hover:duration-500 hover:-translate-y-1 hover:scale-[1.03]">
+				<div className={props.flipped ? "xl:flex xl:items-center xl:flex-row-reverse" : "xl:flex xl:flex-row xl:items-center"}>
+					<div className={props.flipped ? "xl:ml-12" : "xl:mr-12"}>
+						<h3 className="text-4xl mb-2 font-bold">{props.title}</h3>
+						<h4>{props.description}</h4>
+					</div>
+					<Image src={props.image} alt={`${props.title} Image`} width={props.imageWidth} />
+				</div>
+			</div>
+		</a>
+	);
+}
+
+function PastExperienceCard(props: { link: string; title: string; description: string; image: StaticImageData; imageWidth: number }) {
+	return (
+		<a href={props.link}>
+			<div className="bg-lochmara-100 p-8 shadow-xl rounded-xl mt-4 border-lochmara-300 border-4 inline-block min-w-full hover:transition hover:ease-in-out duration-500 hover:duration-500 hover:-translate-y-1 hover:scale-[1.03]">
+				<h3 className="text-2xl font-bold">{props.title}</h3>
+				<h4>{props.description}</h4>
+				<div className="flex justify-center mt-3">
+					<Image src={props.image} alt={`${props.title} Image`} width={props.imageWidth} />
+				</div>
+			</div>
+		</a>
+	);
+}
 
 export default function Home() {
 	return (
@@ -24,15 +54,15 @@ export default function Home() {
 						<div className="text-4xl font-bold mb-4">Socials</div>
 
 						<div className="flex justify-evenly">
-							<a href="https://github.com/dsnsgithub">
+							<a href="https://github.com/dsnsgithub" className="hover:transition hover:ease-in-out duration-500 hover:duration-500 hover:scale-125">
 								<FontAwesomeIcon icon={faGithub} size="2x" title="GitHub - @dsnsgithub"></FontAwesomeIcon>
 							</a>
 
-							<a href="https://www.youtube.com/@DSNShypixel">
+							<a href="https://www.youtube.com/@DSNShypixel" className="hover:transition hover:ease-in-out duration-500 hover:duration-500 hover:scale-125">
 								<FontAwesomeIcon icon={faYoutube} size="2x" title="YouTube - @DSNSHypixel"></FontAwesomeIcon>
 							</a>
 
-							<a href="mailto:dsns@dsns.dev">
+							<a href="mailto:dsns@dsns.dev" className="hover:transition hover:ease-in-out duration-500 hover:duration-500 hover:scale-125">
 								<FontAwesomeIcon icon={faEnvelope} size="2x" title="Email - dsns@dsns.dev"></FontAwesomeIcon>
 							</a>
 						</div>
@@ -55,72 +85,52 @@ export default function Home() {
 				<div className="flex flex-col justify-center lg:p-8 p-4 shadow-xl rounded-xl bg-lochmara-200 w-full m-2 mt-8 lg:m-8">
 					<div className="text-4xl font-bold mb-4">Major Projects</div>
 
-					<a href="https://scheduli.dsns.dev/">
-						<div className="bg-lochmara-100 p-8 shadow-xl rounded-xl mt-4 border-lochmara-300 border-4 inline-block min-w-full">
-							<div className="xl:flex xl:flex-row xl:items-center">
-								<div className="xl:mr-12">
-									<h3 className="text-4xl mb-2 font-bold">Scheduli</h3>
-									<h4>
-										Scheduli is a general-purpose schedule app avaliable on iOS and Android that keeps you informed about your daily schedule, even during the most chaotic days.
-									</h4>
-								</div>
-								<Image src={scheduliImage} alt="Scheduli Image" width={400} />
-							</div>
-						</div>
-					</a>
+					<FeatureCard
+						flipped={false}
+						link="https://scheduli.dsns.dev/"
+						title="Scheduli"
+						description="Scheduli is a general-purpose schedule app available on iOS and Android that keeps you informed about your daily schedule, even during the most chaotic days."
+						image={scheduliImage}
+						imageWidth={400}
+					></FeatureCard>
 
-					<a href="https://github.com/dsnsgithub/sdghackathon">
-						<div className="bg-lochmara-100 p-8 shadow-xl rounded-xl mt-4 border-lochmara-300 border-4 inline-block min-w-full">
-							<div className="xl:flex xl:items-center xl:flex-row-reverse">
-								<div className="xl:ml-12">
-									<h3 className="text-4xl mb-2 font-bold">Recycling Game</h3>
-									<h4>
-										This project won Top 3 in the Coding for SDG 2023 Hackathon. The topic of the hackathon was UN SDG #13 Climate Action, with the hackathon hosting 91
-										participants.
-									</h4>
-								</div>
-								<Image src={hackathonImage} alt="Hackathon Submission Image" width={400} />
-							</div>
-						</div>
-					</a>
+					<FeatureCard
+						flipped={true}
+						link="https://github.com/dsnsgithub/sdghackathon"
+						title="Recycling Game"
+						description="This project won Top 3 in the Coding for SDG 2023 Hackathon. The topic of the hackathon was UN SDG #13 Climate Action, with the hackathon hosting 91 participants."
+						image={hackathonImage}
+						imageWidth={400}
+					></FeatureCard>
 				</div>
 			</div>
 
 			<div className="lg:p-8 p-4 shadow-xl rounded-xl bg-lochmara-200 m-2 mt-8 lg:m-8">
 				<div className="text-4xl font-bold mb-4">Past Experience</div>
 				<div className="flex-1 grid md:grid-cols-2 xl:grid-cols-2 gap-4 md:gap-8 ">
-					<a href="https://github.com/dsnsgithub/chromocraft.net">
-						<div className="bg-lochmara-100 p-8 shadow-xl rounded-xl mt-4 border-lochmara-300 border-4 inline-block min-w-full">
-							<h3 className="text-2xl font-bold">chromocraft.net</h3>
-							<h4>Chromocraft is a public Minecraft SMP that was hosted from 2018-2019 with 150+ members.</h4>
-							<div className="flex justify-center mt-3">
-								<Image src={chromocraftImage} alt="Chromocraft Image" width={600} />
-							</div>
-						</div>
-					</a>
+					<PastExperienceCard
+						link="https://github.com/dsnsgithub/chromocraft.net"
+						title="chromocraft.net"
+						description="Chromocraft is a public Minecraft SMP that was hosted from 2018-2019 with 150+ members."
+						image={chromocraftImage}
+						imageWidth={600}
+					/>
 
-					<a href="https://github.com/dsnsgithub/truthBeTold">
-						<div className="bg-lochmara-100 p-8 shadow-xl rounded-xl mt-4 border-lochmara-300 border-4 inline-block min-w-full">
-							<h3 className="text-2xl font-bold">TruthBeTold</h3>
-							<h4>TruthBeTold is a browser extension designed to detect misinformation using AI.</h4>
-							<div className="flex justify-center mt-3">
-								<Image src={truthBeToldImage} alt="TruthBeTold Image" width={350} />
-							</div>
-						</div>
-					</a>
+					<PastExperienceCard
+						link="https://github.com/dsnsgithub/truthBeTold"
+						title="TruthBeTold"
+						description="TruthBeTold is a browser extension designed to detect misinformation using AI."
+						image={truthBeToldImage}
+						imageWidth={350}
+					/>
 
-					<a href="https://onlyeggrolls.com/">
-						<div className="bg-lochmara-100 p-8 shadow-xl rounded-xl mt-4 border-lochmara-300 border-4 inline-block min-w-full">
-							<h3 className="text-2xl font-bold">onlyeggrolls.com</h3>
-							<h4>
-								OnlyEggrolls is a proof of concept shopping website, built completely in vanilla JS. It has a functional backend, allowing users to create an account, store items in a
-								shopping cart, and order eggrolls.
-							</h4>
-							<div className="flex justify-center mt-3">
-								<Image src={onlyEggrollsImage} alt="OnlyEggrolls Image" width={350} />
-							</div>
-						</div>
-					</a>
+					<PastExperienceCard
+						link="https://onlyeggrolls.com/"
+						title="onlyeggrolls.com"
+						description="OnlyEggrolls is a proof of concept shopping website, built completely in vanilla JS. It has a functional backend, allowing users to create an account, store items in a shopping cart, and order eggrolls."
+						image={onlyEggrollsImage}
+						imageWidth={350}
+					/>
 				</div>
 			</div>
 		</div>

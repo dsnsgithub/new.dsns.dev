@@ -17,10 +17,10 @@ export default function Navbar() {
 
 			<div>
 				<Link className="px-2 md:px-5 lg:px-6" href="/">
-					<FontAwesomeIcon icon={faHome} size="xl" title="Home" />
+					<FontAwesomeIcon icon={faHome} size="xl" title="Home" className="hover:transition hover:ease-in-out duration-500 hover:duration-500 hover:scale-125" />
 				</Link>
 				<Link className="px-2 md:px-5 lg:px-6" href="/projects">
-					<FontAwesomeIcon icon={faFolderOpen} size="xl" title="Projects" />
+					<FontAwesomeIcon icon={faFolderOpen} size="xl" title="Projects" className="hover:transition hover:ease-in-out duration-500 hover:duration-500 hover:scale-125"/>
 				</Link>
 			</div>
 		</nav>
