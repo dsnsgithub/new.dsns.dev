@@ -1,6 +1,7 @@
 # dsns.dev
 Check out what I do, and explore some of my projects.
-![image](https://github.com/dsnsgithub/dsns.dev/assets/48170013/f0b22438-6828-494c-8264-ccb771385dca)
+![image](https://github.com/dsnsgithub/dsns.dev/assets/48170013/68a78ec4-843d-4d8f-ac4e-dc551c763ce5)
+
 
 ## Local Development
 First, run the development server:
