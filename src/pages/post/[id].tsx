@@ -34,7 +34,7 @@ export default function BlogPost({ postData }) {
 					</Link>
 					{postData.title}
 				</div>
-				<div className="text-2xl mb-10">{new Date(postData.date + "GMT-8").toLocaleDateString()}</div>
+				<div className="text-2xl mb-10">{postData.date}</div>
 			</div>
 
 			<section className="container mx-4 prose max-w-6xl" dangerouslySetInnerHTML={{ __html: postData.contentHtml }}></section>

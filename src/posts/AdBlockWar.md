@@ -1,6 +1,6 @@
 ---
 title: "Google vs Adblock - In-Depth Analysis"
-date: "2023-11-08"
+date: "11/08/2023"
 description: "Google, in particular Youtube, has recently waged a full on war on ad blockers, as these browser extensions cut into their profits significantly. Unfortunately for Google, this battle cannot be won."
 ---
 
@@ -8,19 +8,19 @@ description: "Google, in particular Youtube, has recently waged a full on war on
 
 #### Background Information:
 
--   [Introduction](#user-content-why-this-war-is-unwinnable-for-youtube:~:text=Finishing%20Notes-,Introduction,-Google%20has%20recently)
--   [A Fine Line](#user-content-why-this-war-is-unwinnable-for-youtube:~:text=YouTube%27s%20anti%2DAdblock.-,A%20Fine%20Line,-YouTube%2C%20the%20largest)
--   [The Rise of Adblock](#user-content-why-this-war-is-unwinnable-for-youtube:~:text=consumer%20was%20broken.-,The%20Rise%20of%20Adblock,-Behold%2C%20the%20savior)
--   [Conflict of Interest](#user-content-why-this-war-is-unwinnable-for-youtube:~:text=into%20their%20profits%3F-,Conflict%20of%20Interest,-Google%20controls%20both)
+-   [Introduction](#user-content-introduction)
+-   [A Fine Line](#user-content-a-fine-line)
+-   [The Rise of Adblock](#user-content-the-rise-of-adblock)
+-   [Conflict of Interest](#user-content-conflict-of-interest)
 
 #### YouTube/Actual War
 
--   [What does this have to do with YouTube?](#user-content-why-this-war-is-unwinnable-for-youtube:~:text=based%20browser%20options.-,What%20does%20this%20have%20to%20do%20with%20YouTube%3F,-These%20events%20all)
--   [War - Technical Analysis](#user-content-why-this-war-is-unwinnable-for-youtube:~:text=The%20War%20%2B%20Technical%20Analysis)
--   [How is YouTube detecting ad blockers?](#user-content-why-this-war-is-unwinnable-for-youtube:~:text=watch%20these%20ads.-,How%20is%20YouTube%20detecting%20ad%20blockers%3F,-YouTube%20uses%20its)
--   [How uBlock Origin Fights Back](#user-content-why-this-war-is-unwinnable-for-youtube:~:text=How%20uBlock%20Origin%20fights%20back.)
--   [Why This War is Unwinnable](#user-content-why-this-war-is-unwinnable-for-youtube:~:text=Why%20this%20war%20is%20unwinnable%20for%20YouTube)
--   [Finishing Notes](#user-content-why-this-war-is-unwinnable-for-youtube:~:text=behind%20a%20paywall.-,Finishing%20Notes,-Adblock%20Market%20Penetration)
+-   [What does this have to do with YouTube?](#user-content-what-does-this-have-to-do-with-youtube)
+-   [War - Technical Analysis](#user-content-the-war--technical-analysis)
+-   [How is YouTube detecting ad blockers?](#user-content-how-is-youtube-detecting-ad-blockers)
+-   [How uBlock Origin Fights Back](#user-content-how-ublock-origin-fights-back)
+-   [Why This War is Unwinnable](#user-content-why-this-war-is-unwinnable-for-youtube)
+-   [Finishing Notes](#user-content-finishing-notes)
 
 ## Introduction
 

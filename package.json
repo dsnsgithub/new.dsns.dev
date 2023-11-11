@@ -16,6 +16,7 @@
     "react-dom": "^18",
     "remark": "^15.0.1",
     "remark-html": "^16.0.1",
+    "remark-slug": "^7.0.1",
     "whois-json": "^2.0.4",
     "ytdl-core": "^4.11.5"
   },

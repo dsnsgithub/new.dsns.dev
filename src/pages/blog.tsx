@@ -34,7 +34,7 @@ export default function Blog({ allPostsData }: BlogProps) {
 
 							<div className="text-xl mb-4">{description}</div>
 
-							<div className="text-lg text-right">{new Date(date + "GMT-8").toLocaleDateString()}</div>
+							<div className="text-lg text-right">{date}</div>
 						</div>
 					</Link>
 				))}
