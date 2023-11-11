@@ -10,9 +10,12 @@
   },
   "dependencies": {
     "@types/whois-json": "^2.0.3",
+    "gray-matter": "^4.0.3",
     "next": "13.5.5",
     "react": "^18",
     "react-dom": "^18",
+    "remark": "^15.0.1",
+    "remark-html": "^16.0.1",
     "whois-json": "^2.0.4",
     "ytdl-core": "^4.11.5"
   },
@@ -21,6 +24,7 @@
     "@fortawesome/free-brands-svg-icons": "^6.4.2",
     "@fortawesome/free-solid-svg-icons": "^6.4.2",
     "@fortawesome/react-fontawesome": "^0.2.0",
+    "@tailwindcss/typography": "^0.5.10",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
