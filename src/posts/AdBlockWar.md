@@ -50,7 +50,7 @@ is fighting the entire internet, as people have realized that the current web wi
 
 ## The War + Technical Analysis
 
-Even with these massive obstacles in the way, Google attempted to get rid of these adblockers once and for all on the largest video platform. Originally created as an experiment, a global rollout of anti-adblock popups started, stating that adblockers violate YouTube's terms of service. ![](/images/blog/AdBlock.webp)
+Even with these massive obstacles in the way, Google attempted to get rid of these adblockers once and for all on the largest video platform. Originally created as an experiment, a global rollout of anti-adblock popups started, stating that adblockers violate YouTube's terms of service. ![](/images/blog/adblock.webp)
 Almost immediately, volunteers from adblocker extensions like uBlock Origin immediately put out patches to bypass YouTube's adblock detection. This initiated an all-out war between the Adblock developers and YouTube.
 You could draw a connection to the fight between David and Goliath, where Google, a multi-billion dollar corporation, is fighting a determined group of volunteers (who don't accept donations) who believe no one should have to watch these ads.
 
