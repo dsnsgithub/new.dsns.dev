@@ -13,13 +13,15 @@ import onlyEggrollsImage from "../../public/images/onlyeggrolls.png";
 function FeatureCard(props: { link: string; title: string; description: string; image: StaticImageData; imageWidth: number; flipped: boolean }) {
 	return (
 		<a href={props.link}>
-			<div className="bg-lochmara-100 p-8 shadow-xl rounded-xl mt-4 border-lochmara-300 border-4 inline-block min-w-full hover:transition hover:ease-in-out duration-500 hover:duration-500 hover:-translate-y-1 hover:scale-[1.03]">
+			<div className="bg-lochmara-100 p-8 shadow-xl rounded-xl mt-4 border-lochmara-300 border-4 inline-block min-w-full hover:transition duration-500 hover:duration-500 hover:scale-[1.02]">
 				<div className={props.flipped ? "xl:flex xl:items-center xl:flex-row-reverse" : "xl:flex xl:flex-row xl:items-center"}>
 					<div className={props.flipped ? "xl:ml-12" : "xl:mr-12"}>
 						<h3 className="text-4xl mb-2 font-bold">{props.title}</h3>
 						<h4>{props.description}</h4>
 					</div>
-					<Image src={props.image} alt={`${props.title} Image`} width={props.imageWidth} />
+					<div className="flex justify-center mt-3 w-full h-full">
+						<Image src={props.image} alt={`${props.title} Image`} width={props.imageWidth} />
+					</div>
 				</div>
 			</div>
 		</a>
@@ -29,7 +31,7 @@ function FeatureCard(props: { link: string; title: string; description: string; 
 function PastExperienceCard(props: { link: string; title: string; description: string; image: StaticImageData; imageWidth: number }) {
 	return (
 		<a href={props.link}>
-			<div className="bg-lochmara-100 p-8 shadow-xl rounded-xl mt-4 border-lochmara-300 border-4 inline-block min-w-full hover:transition hover:ease-in-out duration-500 hover:duration-500 hover:-translate-y-1 hover:scale-[1.03]">
+			<div className="bg-lochmara-100 p-8 shadow-xl rounded-xl mt-4 border-lochmara-300 border-4 inline-block min-w-full hover:transition duration-500 hover:duration-500 hover:scale-[1.02]">
 				<h3 className="text-2xl font-bold">{props.title}</h3>
 				<h4>{props.description}</h4>
 				<div className="flex justify-center mt-3">
@@ -54,15 +56,15 @@ export default function Home() {
 						<div className="text-4xl font-bold mb-4">Socials</div>
 
 						<div className="flex justify-evenly">
-							<a href="https://github.com/dsnsgithub" className="hover:transition hover:ease-in-out duration-500 hover:duration-500 hover:scale-125">
+							<a href="https://github.com/dsnsgithub" className="hover:transition duration-500 hover:duration-500 hover:scale-125">
 								<FontAwesomeIcon icon={faGithub} size="2x" title="GitHub - @dsnsgithub"></FontAwesomeIcon>
 							</a>
 
-							<a href="https://www.youtube.com/@DSNShypixel" className="hover:transition hover:ease-in-out duration-500 hover:duration-500 hover:scale-125">
+							<a href="https://www.youtube.com/@DSNShypixel" className="hover:transition duration-500 hover:duration-500 hover:scale-125">
 								<FontAwesomeIcon icon={faYoutube} size="2x" title="YouTube - @DSNSHypixel"></FontAwesomeIcon>
 							</a>
 
-							<a href="mailto:dsns@dsns.dev" className="hover:transition hover:ease-in-out duration-500 hover:duration-500 hover:scale-125">
+							<a href="mailto:dsns@dsns.dev" className="hover:transition duration-500 hover:duration-500 hover:scale-125">
 								<FontAwesomeIcon icon={faEnvelope} size="2x" title="Email - dsns@dsns.dev"></FontAwesomeIcon>
 							</a>
 						</div>

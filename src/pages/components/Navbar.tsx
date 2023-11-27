@@ -15,15 +15,15 @@ export default function Navbar() {
 				<h1 className="px-4 text-4xl font-bold hidden lg:inline">dsns.dev</h1>
 			</Link>
 
-			<div>
-				<Link className="px-2 md:px-5 lg:px-6" href="/">
-					<FontAwesomeIcon icon={faHome} size="xl" title="Home" className="hover:transition hover:ease-in-out duration-500 hover:duration-500 hover:scale-125" />
+			<div className="flex flex-row justify-between">
+				<Link className="px-4 md:px-5 lg:px-6" href="/">
+					<FontAwesomeIcon icon={faHome} size="xl" title="Home" className="hover:transition duration-500 hover:duration-500 hover:scale-125" />
 				</Link>
-				<Link className="px-2 md:px-5 lg:px-6" href="/projects">
-					<FontAwesomeIcon icon={faFolderOpen} size="xl" title="Projects" className="hover:transition hover:ease-in-out duration-500 hover:duration-500 hover:scale-125" />
+				<Link className="px-4 md:px-5 lg:px-6" href="/projects">
+					<FontAwesomeIcon icon={faFolderOpen} size="xl" title="Projects" className="hover:transition duration-500 hover:duration-500 hover:scale-125" />
 				</Link>
-				<Link className="px-2 md:px-5 lg:px-6" href="/blog">
-					<FontAwesomeIcon icon={faBlog} size="xl" title="Blog" className="hover:transition hover:ease-in-out duration-500 hover:duration-500 hover:scale-125" />
+				<Link className="px-4 md:px-5 lg:px-6" href="/blog">
+					<FontAwesomeIcon icon={faBlog} size="xl" title="Blog" className="hover:transition duration-500 hover:duration-500 hover:scale-125" />
 				</Link>
 			</div>
 		</nav>
