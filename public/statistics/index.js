@@ -77,7 +77,6 @@ document.onkeyup = function (event) {
 
 const suggestedUUIDs = {
 	"557bafa10aad40bbb67207a9cefa8220": true,
-	"769f1d98aeef49cd934b4202e1c5537f": true
 };
 
 if (!window.localStorage.getItem("UUIDs")) window.localStorage.setItem("UUIDs", JSON.stringify(suggestedUUIDs));
