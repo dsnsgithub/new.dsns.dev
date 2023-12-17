@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@distube/ytdl-core": "^4.13.3",
     "@types/whois-json": "^2.0.3",
     "gray-matter": "^4.0.3",
     "next": "13.5.5",
@@ -17,8 +18,7 @@
     "remark": "^15.0.1",
     "remark-html": "^16.0.1",
     "remark-slug": "^7.0.1",
-    "whois-json": "^2.0.4",
-    "ytdl-core": "^4.11.5"
+    "whois-json": "^2.0.4"
   },
   "devDependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.4.2",
