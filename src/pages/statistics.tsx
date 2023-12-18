@@ -5,7 +5,7 @@ export default function Statistics() {
 				<h2>This website has been ported, there might be bugs.</h2>
 			</div>
 
-			<iframe src="/statistics/index.html" className="w-full h-screen" scrolling="no"></iframe>
+			<iframe src="/statistics/index.html" className="w-full h-[200vh] lg:h-screen" scrolling="no"></iframe>
 		</div>
 	);
 }

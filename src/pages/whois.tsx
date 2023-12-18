@@ -5,7 +5,7 @@ export default function WhoIs() {
 				<h2>This website has been ported, there might be bugs.</h2>
 			</div>
 
-			<iframe src="/whois/index.html" className="w-full h-screen"></iframe>
+			<iframe src="/whois/index.html" className="w-full h-[200vh] lg:h-screen" scrolling="no"></iframe>
 		</div>
 	);
 }

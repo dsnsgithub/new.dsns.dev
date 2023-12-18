@@ -5,7 +5,7 @@ export default function Youtube() {
 				<h2>This website has been ported, there might be bugs.</h2>
 			</div>
 
-			<iframe src="/mp3/index.html" className="w-full h-screen" scrolling="no"></iframe>
+			<iframe src="/mp3/index.html" className="w-full h-[200vh] lg:h-screen" scrolling="no"></iframe>
 		</div>
 	);
 }
