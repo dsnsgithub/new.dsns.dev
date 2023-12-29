@@ -5,7 +5,7 @@ export default function RecentGames() {
 				<h2>This website has been ported, there might be bugs.</h2>
 			</div>
 
-			<iframe src="/recentgames/index.html" className="w-full h-[500vh] lg:h-screen" scrolling="no"></iframe>
+			<iframe src="/recentgames/index.html" className="w-full h-[500vh] lg:h-[200vh]" scrolling="no"></iframe>
 		</div>
 	);
 }
