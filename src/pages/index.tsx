@@ -12,33 +12,39 @@ import onlyEggrollsImage from "../../public/images/onlyeggrolls.png";
 
 function FeatureCard(props: { link: string; title: string; description: string; image: StaticImageData; imageWidth: number; flipped: boolean }) {
 	return (
-		<a href={props.link}>
-			<div className="bg-lochmara-100 p-8 shadow-xl rounded-xl mt-4 border-lochmara-300 border-4 inline-block min-w-full hover:transition duration-500 hover:duration-500 hover:scale-[1.02]">
-				<div className={props.flipped ? "xl:flex xl:items-center xl:flex-row-reverse" : "xl:flex xl:flex-row xl:items-center"}>
-					<div className={props.flipped ? "xl:ml-12" : "xl:mr-12"}>
-						<h3 className="text-4xl mb-2 font-bold">{props.title}</h3>
-						<h4>{props.description}</h4>
-					</div>
-					<div className="flex justify-center mt-3 w-full h-full">
-						<Image src={props.image} alt={`${props.title} Image`} width={props.imageWidth} />
-					</div>
+		<div
+			className="bg-lochmara-100 p-6 lg:p-8 shadow-xl rounded-xl mt-4 border-lochmara-300 border-4 inline-block min-w-full hover:transition duration-500 hover:duration-500 hover:scale-[1.02] break-words"
+			onClick={() => {
+				window.location.href = props.link;
+			}}
+		>
+			<div className={props.flipped ? "xl:flex xl:items-center xl:flex-row-reverse" : "xl:flex xl:flex-row xl:items-center"}>
+				<div className={props.flipped ? "xl:ml-12" : "xl:mr-12"}>
+					<h3 className="text-4xl mb-2 font-bold">{props.title}</h3>
+					<h4>{props.description}</h4>
+				</div>
+				<div className="flex justify-center mt-3 w-full h-full">
+					<Image src={props.image} alt={`${props.title} Image`} width={props.imageWidth} />
 				</div>
 			</div>
-		</a>
+		</div>
 	);
 }
 
 function PastExperienceCard(props: { link: string; title: string; description: string; image: StaticImageData; imageWidth: number }) {
 	return (
-		<a href={props.link}>
-			<div className="bg-lochmara-100 p-8 shadow-xl rounded-xl mt-4 border-lochmara-300 border-4 inline-block min-w-full hover:transition duration-500 hover:duration-500 hover:scale-[1.02]">
-				<h3 className="text-2xl font-bold">{props.title}</h3>
-				<h4>{props.description}</h4>
-				<div className="flex justify-center mt-3">
-					<Image src={props.image} alt={`${props.title} Image`} width={props.imageWidth} />
-				</div>
+		<div
+			className="bg-lochmara-100 p-6 lg:p-8 shadow-xl rounded-xl mt-4 border-lochmara-300 border-4 inline-block min-w-full hover:transition duration-500 hover:duration-500 hover:scale-[1.02] break-words"
+			onClick={() => {
+				window.location.href = props.link;
+			}}
+		>
+			<h3 className="text-2xl font-bold">{props.title}</h3>
+			<h4>{props.description}</h4>
+			<div className="flex justify-center mt-3">
+				<Image src={props.image} alt={`${props.title} Image`} width={props.imageWidth} />
 			</div>
-		</a>
+		</div>
 	);
 }
 
@@ -84,7 +90,7 @@ export default function Home() {
 					</div>
 				</div>
 
-				<div className="flex flex-col justify-center lg:p-8 p-4 shadow-xl rounded-xl bg-lochmara-200 w-full m-2 mt-8 lg:m-8">
+				<div className="flex flex-col justify-center p-6 lg:p-8 shadow-xl rounded-xl bg-lochmara-200 m-2 mt-8 lg:m-8">
 					<div className="text-4xl font-bold mb-4">Major Projects</div>
 
 					<FeatureCard
@@ -107,7 +113,7 @@ export default function Home() {
 				</div>
 			</div>
 
-			<div className="lg:p-8 p-4 shadow-xl rounded-xl bg-lochmara-200 m-2 mt-8 lg:m-8">
+			<div className="p-6 lg:p-8 shadow-xl rounded-xl bg-lochmara-200 m-2 mt-8 lg:m-8">
 				<div className="text-4xl font-bold mb-4">Past Experience</div>
 				<div className="flex-1 grid md:grid-cols-2 xl:grid-cols-2 gap-4 md:gap-8 ">
 					<PastExperienceCard
