@@ -10,11 +10,9 @@ import onlyEggrollsImage from "../../public/images/onlyeggrolls.png";
 
 function FeatureCard(props: { link: string; title: string; description: string; image: StaticImageData; imageWidth: number; flipped: boolean }) {
 	return (
-		<div
+		<a
 			className="bg-lochmara-100 p-6 lg:p-8 shadow-xl rounded-xl mt-4 border-lochmara-300 border-4 inline-block min-w-full hover:transition duration-500 hover:duration-500 hover:scale-[1.02] break-words"
-			onClick={() => {
-				window.location.href = props.link;
-			}}
+			href={props.link}
 		>
 			<div className={props.flipped ? "xl:flex xl:items-center xl:flex-row-reverse" : "xl:flex xl:flex-row xl:items-center"}>
 				<div className={props.flipped ? "xl:ml-12" : "xl:mr-12"}>
@@ -25,24 +23,22 @@ function FeatureCard(props: { link: string; title: string; description: string; 
 					<Image src={props.image} alt={`${props.title} Image`} width={props.imageWidth} />
 				</div>
 			</div>
-		</div>
+		</a>
 	);
 }
 
 function PastExperienceCard(props: { link: string; title: string; description: string; image: StaticImageData; imageWidth: number }) {
 	return (
-		<div
+		<a
 			className="bg-lochmara-100 p-6 lg:p-8 shadow-xl rounded-xl mt-4 border-lochmara-300 border-4 inline-block min-w-full hover:transition duration-500 hover:duration-500 hover:scale-[1.02] break-words"
-			onClick={() => {
-				window.location.href = props.link;
-			}}
+			href={props.link}
 		>
 			<h3 className="text-2xl font-bold">{props.title}</h3>
 			<h4>{props.description}</h4>
 			<div className="flex justify-center mt-3">
 				<Image src={props.image} alt={`${props.title} Image`} width={props.imageWidth} />
 			</div>
-		</div>
+		</a>
 	);
 }
 
