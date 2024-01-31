@@ -1,6 +1,4 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
-import { faCloudflare, faGithub, faJsSquare, faPython, faYoutube, faLinux, faGitAlt, faReact } from "@fortawesome/free-brands-svg-icons";
+import { FaCloudflare, FaGithub, FaJsSquare, FaPython, FaYoutube, FaLinux, FaGitAlt, FaReact, FaEnvelope } from "react-icons/fa";
 
 import Image, { StaticImageData } from "next/image";
 import scheduliImage from "../../public/images/scheduli.png";
@@ -63,15 +61,15 @@ export default function Home() {
 
 						<div className="flex justify-evenly">
 							<a href="https://github.com/dsnsgithub" className="hover:transition duration-500 hover:duration-500 hover:scale-125">
-								<FontAwesomeIcon icon={faGithub} size="2x" title="GitHub - @dsnsgithub"></FontAwesomeIcon>
+								<FaGithub className="text-3xl" title="GitHub - @dsnsgithub"></FaGithub>
 							</a>
 
 							<a href="https://www.youtube.com/@DSNShypixel" className="hover:transition duration-500 hover:duration-500 hover:scale-125">
-								<FontAwesomeIcon icon={faYoutube} size="2x" title="YouTube - @DSNSHypixel"></FontAwesomeIcon>
+								<FaYoutube className="text-3xl" title="YouTube - @DSNSHypixel"></FaYoutube>
 							</a>
 
 							<a href="mailto:dsns@dsns.dev" className="hover:transition duration-500 hover:duration-500 hover:scale-125">
-								<FontAwesomeIcon icon={faEnvelope} size="2x" title="Email - dsns@dsns.dev"></FontAwesomeIcon>
+								<FaEnvelope className="text-3xl" title="Email - dsns@dsns.dev"></FaEnvelope>
 							</a>
 						</div>
 					</div>
@@ -80,12 +78,12 @@ export default function Home() {
 						<div className="text-4xl font-bold mb-4">Skills</div>
 
 						<div className="flex justify-evenly flex-wrap">
-							<FontAwesomeIcon icon={faCloudflare} size="2x" title="Cloudflare"></FontAwesomeIcon>
-							<FontAwesomeIcon icon={faJsSquare} size="2x" title="JavaScript"></FontAwesomeIcon>
-							<FontAwesomeIcon icon={faLinux} size="2x" title="Linux"></FontAwesomeIcon>
-							<FontAwesomeIcon icon={faPython} size="2x" title="Python"></FontAwesomeIcon>
-							<FontAwesomeIcon icon={faGitAlt} size="2x" title="Git"></FontAwesomeIcon>
-							<FontAwesomeIcon icon={faReact} size="2x" title="React"></FontAwesomeIcon>
+							<FaCloudflare className="text-2xl" title="Cloudflare"></FaCloudflare>
+							<FaJsSquare className="text-2xl" title="JavaScript"></FaJsSquare>
+							<FaLinux className="text-2xl" title="Linux"></FaLinux>
+							<FaPython className="text-2xl" title="Python"></FaPython>
+							<FaGitAlt className="text-2xl" title="Git"></FaGitAlt>
+							<FaReact className="text-2xl" title="React"></FaReact>
 						</div>
 					</div>
 				</div>

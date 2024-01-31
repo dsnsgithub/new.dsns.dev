@@ -3,8 +3,7 @@ import kirbyIcon from "../../../public/halloweenkirby.svg";
 // import kirbyIcon from "../../../public/kirby.png";
 import Link from "next/link";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBlog, faFolderOpen, faHome } from "@fortawesome/free-solid-svg-icons";
+import { FaBlog, FaFolderOpen, FaHome } from "react-icons/fa";
 
 export default function Navbar() {
 	return (
@@ -17,13 +16,13 @@ export default function Navbar() {
 
 			<div className="flex flex-row justify-between">
 				<Link className="px-4 md:px-5 lg:px-6" href="/">
-					<FontAwesomeIcon icon={faHome} size="xl" title="Home" className="hover:transition duration-500 hover:duration-500 hover:scale-125" />
+					<FaHome title="Home" className="hover:transition duration-500 hover:duration-500 hover:scale-125 text-2xl md:text-3xl" />
 				</Link>
 				<Link className="px-4 md:px-5 lg:px-6" href="/projects">
-					<FontAwesomeIcon icon={faFolderOpen} size="xl" title="Projects" className="hover:transition duration-500 hover:duration-500 hover:scale-125" />
+					<FaFolderOpen title="Projects" className="hover:transition duration-500 hover:duration-500 hover:scale-125 text-2xl md:text-3xl" />
 				</Link>
 				<Link className="px-4 md:px-5 lg:px-6" href="/blog">
-					<FontAwesomeIcon icon={faBlog} size="xl" title="Blog" className="hover:transition duration-500 hover:duration-500 hover:scale-125" />
+					<FaBlog title="Blog" className="hover:transition duration-500 hover:duration-500 hover:scale-125 text-2xl md:text-3xl" />
 				</Link>
 			</div>
 		</nav>
