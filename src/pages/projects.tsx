@@ -32,9 +32,9 @@ export default function ProjectPage() {
 					image={statisticsImage}
 				></Project>
 
-				<Project href="/marketdb/" title="Generic Supermarket Database" description="Explore a wide range of products and their prices." image={marketdbImage}></Project>
 				<Project href="/recentgames/" title="Hypixel Player Lookup" description="Find the status and recent games of any Hypixel player." image={recentGamesImage} />
 				<Project href="/youtube/" title="YouTube Video Downloader" description="This web app downloads high-quality audio/video from YouTube videos." image={youtubeImage} />
+				<Project href="/marketdb/" title="Generic Supermarket Database" description="Explore a wide range of products and their prices." image={marketdbImage}></Project>
 				<Project href="/speedtest/" title="Internet Speedtest" description="This web app is a bloat-free speedtest." image={speedtestImage} />
 
 				<Project
