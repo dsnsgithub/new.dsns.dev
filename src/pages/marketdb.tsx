@@ -52,7 +52,7 @@ function Product(props: { product: string; description: string; pricePerOunce: n
 		<div className="bg-lochmara-100 p-4 rounded-lg shadow-lg border-lochmara-300 border-2">
 			<h3 className="text-lg font-bold">{capitalizeAndSpace(props.product)}</h3>
 			<p>Description: {props.description}</p>
-			<p className="font-bold">Price per Ounce: ${props.pricePerOunce}</p>
+			<p className="font-bold">Price per Ounce: {props.pricePerOunce.toLocaleString("en-US", { style: "currency", currency: "USD" })}</p>
 		</div>
 	);
 }
