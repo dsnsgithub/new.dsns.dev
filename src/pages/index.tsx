@@ -20,7 +20,7 @@ function FeatureCard(props: { link: string; title: string; description: string; 
 					<h4>{props.description}</h4>
 				</div>
 				<div className="flex justify-center mt-3 w-full h-full">
-					<Image src={props.image} alt={`${props.title} Image`} width={props.imageWidth} />
+					<Image src={props.image} alt={`${props.title} Image`} width={props.imageWidth} unoptimized={true} />
 				</div>
 			</div>
 		</a>
@@ -36,7 +36,7 @@ function PastExperienceCard(props: { link: string; title: string; description: s
 			<h3 className="text-2xl font-bold">{props.title}</h3>
 			<h4>{props.description}</h4>
 			<div className="flex justify-center mt-3">
-				<Image src={props.image} alt={`${props.title} Image`} width={props.imageWidth} />
+				<Image src={props.image} alt={`${props.title} Image`} width={props.imageWidth} unoptimized={true} />
 			</div>
 		</a>
 	);
