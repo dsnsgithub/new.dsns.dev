@@ -57,7 +57,7 @@ function Product(props: {
 		<a href={props.result.url} target="_blank">
 			<div className="bg-lochmara-100 p-4 rounded-lg shadow-lg border-lochmara-300 border-2 relative">
 				<h3 className="text-lg font-bold">{capitalizeAndSpace(props.result.product)}</h3>
-				<p className="mb-4">Description: {props.result.description}</p>
+				<p className="mb-4">Description: {props.result.description ? props.result.description : "N/A"}</p>
 				<div className="flex items-center text-sm">
 					<div className="rounded-xl bg-lochmara-600 text-white p-2">{props.result.pricePerOunce.toLocaleString("en-US", { style: "currency", currency: "USD" })}/oz</div>
 					{props.result.nutritionPercentage ? (
