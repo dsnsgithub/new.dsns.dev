@@ -105,7 +105,7 @@ export default function FoodDB() {
 			<div className="p-4 rounded-lg mt-4 mb-4 shadow-xl border-2 border-lochmara-300 bg-lochmara-100">
 				<h2>Explore a wide range of products and their prices.</h2>
 				<h2>
-					Using a web-scrapped DB from{" "}
+					Using a web-scraped DB from{" "}
 					<a href="https://cooklist.com/products/browse" className="text-lochmara-500 underline">
 						CookList
 					</a>
