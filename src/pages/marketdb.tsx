@@ -16,7 +16,10 @@ function searchProducts(searchTerm: string, database: any) {
 					product,
 					relevance,
 					description,
-					pricePerOunce: database[url][subURL][product]["pricePerOunce"]
+					nutritionPercentage: database[url][subURL][product]["nutritionPercentage"],
+					caloriesPer100G: database[url][subURL][product]["caloriesPer100G"],
+					pricePerOunce: database[url][subURL][product]["pricePerOunce"],
+					url: `https://cooklist.com/products/${url}/${subURL}/${product}`
 				});
 			}
 		}
@@ -47,13 +50,28 @@ function capitalizeAndSpace(str: string) {
 	return words.join(" ");
 }
 
-function Product(props: { product: string; description: string; pricePerOunce: number }) {
+function Product(props: {
+	result: { product: string; description: string; pricePerOunce: number; caloriesPer100G: number; nutritionPercentage: { carbs: number; fat: number; protein: number }; url: string };
+}) {
 	return (
-		<div className="bg-lochmara-100 p-4 rounded-lg shadow-lg border-lochmara-300 border-2">
-			<h3 className="text-lg font-bold">{capitalizeAndSpace(props.product)}</h3>
-			<p>Description: {props.description}</p>
-			<p className="font-bold">Price per Ounce: {props.pricePerOunce.toLocaleString("en-US", { style: "currency", currency: "USD" })}</p>
-		</div>
+		<a href={props.result.url} target="_blank">
+			<div className="bg-lochmara-100 p-4 rounded-lg shadow-lg border-lochmara-300 border-2 relative">
+				<h3 className="text-lg font-bold">{capitalizeAndSpace(props.result.product)}</h3>
+				<p className="mb-4">Description: {props.result.description}</p>
+				<div className="flex items-center text-sm">
+					<div className="rounded-xl bg-lochmara-600 text-white p-2">{props.result.pricePerOunce.toLocaleString("en-US", { style: "currency", currency: "USD" })}/oz</div>
+					{props.result.nutritionPercentage ? (
+						<>
+							<div className="rounded-xl bg-green-600 text-white p-2 ml-2">Carbs: {props.result.nutritionPercentage.carbs}%</div>
+							<div className="rounded-xl bg-yellow-600 text-white p-2 ml-2">Fat: {props.result.nutritionPercentage.fat}%</div>
+							<div className="rounded-xl bg-red-600 text-white p-2 ml-2">Protein: {props.result.nutritionPercentage.protein}%</div>
+						</>
+					) : (
+						<></>
+					)}
+				</div>
+			</div>
+		</a>
 	);
 }
 
@@ -71,11 +89,7 @@ function handleInput(e: FormEvent<HTMLInputElement>, setResults: Function) {
 	for (const searchResult in searchResults) {
 		if (searchResults[searchResult].relevance == 0) continue;
 
-		const product = searchResults[searchResult].product;
-		const description = searchResults[searchResult].description;
-		const pricePerOunce = searchResults[searchResult].pricePerOunce;
-
-		currentResults.push(<Product key={product} product={product} description={description} pricePerOunce={pricePerOunce}></Product>);
+		currentResults.push(<Product key={searchResults[searchResult]["product"]} result={searchResults[searchResult]}></Product>);
 	}
 
 	setResults(currentResults);
