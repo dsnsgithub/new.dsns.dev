@@ -21,12 +21,13 @@ function searchProducts(searchTerm: string, database: any) {
 					nutritionPercentage: database[url][subURL][product]["nutritionPercentage"],
 					caloriesPer100G: database[url][subURL][product]["caloriesPer100G"],
 					pricePerOunce: database[url][subURL][product]["pricePerOunce"],
+					img: database[url][subURL][product]["img"],
 					url: `https://cooklist.com/products/${url}/${subURL}/${product}`
 				});
 			}
 		}
 	}
-	
+
 	results.sort((a, b) => b.relevance - a.relevance);
 
 	return results.slice(0, 5);
@@ -54,25 +55,48 @@ function capitalizeAndSpace(str: string) {
 }
 
 function Product(props: {
-	result: { product: string; description: string; pricePerOunce: number; caloriesPer100G: number; nutritionPercentage: { carbs: number; fat: number; protein: number }; url: string };
+	result: {
+		product: string;
+		description: string;
+		pricePerOunce: number;
+		caloriesPer100G: number;
+		nutritionPercentage: {
+			carbs: number;
+			fat: number;
+			protein: number;
+		};
+		url: string;
+		img: string;
+	};
 }) {
 	return (
 		<a href={props.result.url} target="_blank">
-			<div className="bg-lochmara-100 p-4 rounded-lg shadow-lg border-lochmara-300 border-2 relative">
-				<h3 className="text-lg font-bold">{capitalizeAndSpace(props.result.product)}</h3>
-				{props.result.description ? <p className="mb-4">{props.result.description}</p> : <p className="mb-2">No description provided.</p>}
-				<div className="flex items-center text-sm">
-					<div className="rounded-xl bg-lochmara-600 text-white p-2">{props.result.pricePerOunce.toLocaleString("en-US", { style: "currency", currency: "USD" })}/oz</div>
-					{props.result.nutritionPercentage ? (
-						<>
-							<div className="rounded-xl bg-green-600 text-white p-2 ml-2">Carbs: {props.result.nutritionPercentage.carbs}%</div>
-							<div className="rounded-xl bg-yellow-600 text-white p-2 ml-2">Fat: {props.result.nutritionPercentage.fat}%</div>
-							<div className="rounded-xl bg-red-600 text-white p-2 ml-2">Protein: {props.result.nutritionPercentage.protein}%</div>
-						</>
-					) : (
-						<></>
-					)}
+			<div className="bg-lochmara-100 p-4 rounded-lg shadow-lg border-lochmara-300 border-2 relative flex flex-row justify-between">
+				<div>
+					<h3 className="text-lg font-bold">{capitalizeAndSpace(props.result.product)}</h3>
+
+					{props.result.description ? <p className="mb-4">{props.result.description}</p> : <p className="mb-2">No description provided.</p>}
+					<div className="flex items-center text-sm">
+						<div className="rounded-xl bg-lochmara-600 text-white p-2">
+							{props.result.pricePerOunce.toLocaleString("en-US", {
+								style: "currency",
+								currency: "USD"
+							})}
+							/oz
+						</div>
+						{props.result.nutritionPercentage ? (
+							<>
+								<div className="rounded-xl bg-green-600 text-white p-2 ml-2">Carbs: {props.result.nutritionPercentage.carbs}%</div>
+								<div className="rounded-xl bg-yellow-600 text-white p-2 ml-2">Fat: {props.result.nutritionPercentage.fat}%</div>
+								<div className="rounded-xl bg-red-600 text-white p-2 ml-2">Protein: {props.result.nutritionPercentage.protein}%</div>
+							</>
+						) : (
+							<></>
+						)}
+					</div>
 				</div>
+
+				{props.result.img ? <img src={props.result.img} alt={capitalizeAndSpace(props.result.product)} className="mb-4 rounded-lg" width={200} /> : <></>}
 			</div>
 		</a>
 	);
