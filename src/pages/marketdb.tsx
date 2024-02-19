@@ -6,23 +6,17 @@ import database from "./api/marketDB.json";
 function searchProducts(searchTerm: string, database: any) {
 	const results = [];
 
-	for (const url in database) {
-		for (const subURL in database[url]) {
-			for (const product in database[url][subURL]) {
-				const description = database[url][subURL][product]["description"];
+	for (const category in database) {
+		for (const subCategory in database[category]) {
+			for (const product in database[category][subCategory]) {
 				const relevance = calculateRelevance(product, searchTerm);
-
 				if (relevance == 0) continue;
 
 				results.push({
-					product,
-					relevance,
-					description,
-					nutritionPercentage: database[url][subURL][product]["nutritionPercentage"],
-					caloriesPer100G: database[url][subURL][product]["caloriesPer100G"],
-					pricePerOunce: database[url][subURL][product]["pricePerOunce"],
-					img: database[url][subURL][product]["img"],
-					url: `https://cooklist.com/products/${url}/${subURL}/${product}`
+					product: product,
+					relevance: relevance,
+					contents: database[category][subCategory][product],
+					url: `https://cooklist.com/products/${category}/${subCategory}/${product}`
 				});
 			}
 		}
@@ -57,44 +51,52 @@ function capitalizeAndSpace(str: string) {
 function Product(props: {
 	result: {
 		product: string;
-		description: string;
-		pricePerOunce: number;
-		caloriesPer100G: number;
-		nutritionPercentage: {
-			carbs: number;
-			fat: number;
-			protein: number;
+		relevance: number;
+		contents: {
+			description: string;
+			pricePerOunce: number;
+			caloriesPer100G: number;
+			nutritionPercentage: {
+				carbs: number;
+				fat: number;
+				protein: number;
+			};
+			imageURL: string;
 		};
 		url: string;
-		img: string;
 	};
 }) {
 	return (
 		<a href={props.result.url} target="_blank">
 			<div className="bg-lochmara-100 p-4 rounded-lg shadow-lg border-lochmara-300 border-2 relative flex flex-col lg:flex-row justify-between">
 				<div className="lg:w-1/2">
-					<h3 className="text-lg font-bold">{capitalizeAndSpace(props.result.product)}</h3>
-					{props.result.description ? <p className="mb-4">{props.result.description}</p> : <p className="mb-2">No description provided.</p>}
+					<h3 className="text-lg font-bold">{capitalizeAndSpace(props["result"]["product"])}</h3>
+					{props["result"]["contents"]["description"] ? <p className="mb-4">{props["result"]["contents"]["description"]}</p> : <p className="mb-2">No description provided.</p>}
 					<div className="flex items-center text-sm flex-wrap">
 						<div className="rounded-xl bg-lochmara-600 text-white p-2 md:mb-3 lg:mb-0">
-							{props.result.pricePerOunce.toLocaleString("en-US", {
+							{props["result"]["contents"]["pricePerOunce"].toLocaleString("en-US", {
 								style: "currency",
 								currency: "USD"
 							})}
 							/oz
 						</div>
-						{props.result.nutritionPercentage ? (
+						{props["result"]["contents"]["nutritionPercentage"] ? (
 							<>
-								<div className="rounded-xl bg-green-600 text-white p-2 ml-2 md:mb-3 lg:mb-0">Carbs: {props.result.nutritionPercentage.carbs}%</div>
-								<div className="rounded-xl bg-yellow-600 text-white p-2 ml-2 md:mb-3 lg:mb-0">Fat: {props.result.nutritionPercentage.fat}%</div>
-								<div className="rounded-xl bg-red-600 text-white p-2 ml-2 md:mb-3 lg:mb-0">Protein: {props.result.nutritionPercentage.protein}%</div>
+								<div className="rounded-xl bg-green-600 text-white p-2 ml-2 md:mb-3 lg:mb-0">Carbs: {props["result"]["contents"]["nutritionPercentage"]["carbs"]}%</div>
+								<div className="rounded-xl bg-yellow-600 text-white p-2 ml-2 md:mb-3 lg:mb-0">Fat: {props["result"]["contents"]["nutritionPercentage"]["fat"]}%</div>
+								<div className="rounded-xl bg-red-600 text-white p-2 ml-2 md:mb-3 lg:mb-0">Protein: {props["result"]["contents"]["nutritionPercentage"]["protein"]}%</div>
 							</>
 						) : (
 							<></>
 						)}
 					</div>
 				</div>
-				{props.result.img ? <img src={props.result.img} alt={capitalizeAndSpace(props.result.product)} className="mb-4 rounded-lg lg:mb-0 lg:ml-4 lg:w-72 lg:h-72" /> : <></>}
+
+				{props["result"]["contents"]["imageURL"] ? (
+					<img src={props["result"]["contents"]["imageURL"]} alt={capitalizeAndSpace(props.result.product)} className="mb-4 rounded-lg lg:mb-0 lg:ml-4 lg:w-72 lg:h-72" />
+				) : (
+					<></>
+				)}
 			</div>
 		</a>
 	);
@@ -111,10 +113,8 @@ function handleInput(e: FormEvent<HTMLInputElement>, setResults: Function) {
 	const searchResults = searchProducts(searchTerm, database);
 	const currentResults: JSX.Element[] = [];
 
-	for (const searchResult in searchResults) {
-		if (searchResults[searchResult].relevance == 0) continue;
-
-		currentResults.push(<Product key={searchResults[searchResult]["product"]} result={searchResults[searchResult]}></Product>);
+	for (const index in searchResults) {
+		currentResults.push(<Product key={searchResults[index]["product"]} result={searchResults[index]}></Product>);
 	}
 
 	setResults(currentResults);
