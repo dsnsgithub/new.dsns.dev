@@ -12,6 +12,8 @@ function searchProducts(searchTerm: string, database: any) {
 				const description = database[url][subURL][product]["description"];
 				const relevance = calculateRelevance(product, searchTerm);
 
+				if (relevance == 0) continue;
+
 				results.push({
 					product,
 					relevance,
@@ -24,6 +26,7 @@ function searchProducts(searchTerm: string, database: any) {
 			}
 		}
 	}
+	
 	results.sort((a, b) => b.relevance - a.relevance);
 
 	return results.slice(0, 5);
