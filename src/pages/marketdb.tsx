@@ -71,13 +71,12 @@ function Product(props: {
 }) {
 	return (
 		<a href={props.result.url} target="_blank">
-			<div className="bg-lochmara-100 p-4 rounded-lg shadow-lg border-lochmara-300 border-2 relative flex flex-row justify-between">
-				<div>
+			<div className="bg-lochmara-100 p-4 rounded-lg shadow-lg border-lochmara-300 border-2 relative flex flex-col lg:flex-row justify-between">
+				<div className="lg:w-1/2">
 					<h3 className="text-lg font-bold">{capitalizeAndSpace(props.result.product)}</h3>
-
 					{props.result.description ? <p className="mb-4">{props.result.description}</p> : <p className="mb-2">No description provided.</p>}
-					<div className="flex items-center text-sm">
-						<div className="rounded-xl bg-lochmara-600 text-white p-2">
+					<div className="flex items-center text-sm flex-wrap">
+						<div className="rounded-xl bg-lochmara-600 text-white p-2 md:mb-3 lg:mb-0">
 							{props.result.pricePerOunce.toLocaleString("en-US", {
 								style: "currency",
 								currency: "USD"
@@ -86,17 +85,16 @@ function Product(props: {
 						</div>
 						{props.result.nutritionPercentage ? (
 							<>
-								<div className="rounded-xl bg-green-600 text-white p-2 ml-2">Carbs: {props.result.nutritionPercentage.carbs}%</div>
-								<div className="rounded-xl bg-yellow-600 text-white p-2 ml-2">Fat: {props.result.nutritionPercentage.fat}%</div>
-								<div className="rounded-xl bg-red-600 text-white p-2 ml-2">Protein: {props.result.nutritionPercentage.protein}%</div>
+								<div className="rounded-xl bg-green-600 text-white p-2 ml-2 md:mb-3 lg:mb-0">Carbs: {props.result.nutritionPercentage.carbs}%</div>
+								<div className="rounded-xl bg-yellow-600 text-white p-2 ml-2 md:mb-3 lg:mb-0">Fat: {props.result.nutritionPercentage.fat}%</div>
+								<div className="rounded-xl bg-red-600 text-white p-2 ml-2 md:mb-3 lg:mb-0">Protein: {props.result.nutritionPercentage.protein}%</div>
 							</>
 						) : (
 							<></>
 						)}
 					</div>
 				</div>
-
-				{props.result.img ? <img src={props.result.img} alt={capitalizeAndSpace(props.result.product)} className="mb-4 rounded-lg" width={200} /> : <></>}
+				{props.result.img ? <img src={props.result.img} alt={capitalizeAndSpace(props.result.product)} className="mb-4 rounded-lg lg:mb-0 lg:ml-4 lg:w-72 lg:h-72" /> : <></>}
 			</div>
 		</a>
 	);
@@ -140,18 +138,16 @@ export default function FoodDB() {
 				</h2>
 			</div>
 
-			<div className="flex items-center space-x-4 mb-4">
-				<label className="text-lg font-semibold flex-shrink-0">Enter search term:</label>
-				<div className="relative flex-grow">
-					<input
-						type="text"
-						id="inputBox"
-						onInput={(e) => {
-							handleInput(e, setResults);
-						}}
-						className="px-6 py-4 border rounded-lg focus:outline-none focus:border-lochmara-500 w-full text-xl"
-					></input>
-				</div>
+			<div className="mb-4">
+				<input
+					type="text"
+					id="inputBox"
+					placeholder="Search..."
+					onInput={(e) => {
+						handleInput(e, setResults);
+					}}
+					className="px-6 py-4 border rounded-lg focus:outline-none focus:border-lochmara-500 w-full text-xl"
+				></input>
 			</div>
 
 			<div id="results" className="grid grid-cols-1 gap-4">
