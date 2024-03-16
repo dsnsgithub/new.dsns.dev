@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@distube/ytdl-core": "^4.13.3",
+    "@ffmpeg/ffmpeg": "^0.12.10",
+    "@ffmpeg/util": "^0.12.1",
     "@types/whois-json": "^2.0.4",
     "axios": "^1.6.7",
     "gray-matter": "^4.0.3",

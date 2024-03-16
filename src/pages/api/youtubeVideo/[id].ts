@@ -17,6 +17,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 	return res.json({
 		highestvideo: videoFormats[0],
 		highest: videoFormats.filter((video) => video.hasAudio == true)[0],
-		highestaudio: formats.filter((audio) => audio.mimeType && audio.mimeType.includes("audio/mp4"))[0]
+		highestaudio: formats.filter((audio) => audio.mimeType && audio.mimeType.includes("audio/"))[0]
 	});
 }
