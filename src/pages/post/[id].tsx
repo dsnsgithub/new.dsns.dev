@@ -1,6 +1,7 @@
 import { getAllPostIds, getPostData } from "../../lib/posts";
 import { FaChevronLeft } from "react-icons/fa";
 import Link from "next/link";
+import CustomTags from "../components/CustomTags";
 
 export async function getStaticPaths() {
 	const paths = getAllPostIds();
@@ -26,6 +27,7 @@ export async function getStaticProps({ params }) {
 export default function BlogPost({ postData }) {
 	return (
 		<div className="lg:p-8 p-4 shadow-xl rounded-xl bg-lochmara-200 m-2 mt-8 lg:m-8">
+			<CustomTags title={postData.title} description={postData.description}></CustomTags>
 			<div className="flex flex-row justify-between flex-wrap">
 				<div className="text-2xl lg:text-4xl font-bold mb-4 flex items-center ">
 					<Link href="/blog">

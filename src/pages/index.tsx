@@ -7,6 +7,7 @@ import hackathonImage from "../../public/images/hackathon.png";
 import chromocraftImage from "../../public/images/chromocraft.png";
 import truthBeToldImage from "../../public/images/TruthBeTold.jpg";
 import onlyEggrollsImage from "../../public/images/onlyeggrolls.png";
+import CustomTags from "./components/CustomTags";
 
 function FeatureCard(props: { link: string; title: string; description: string; image: StaticImageData; imageWidth: number; flipped: boolean }) {
 	return (
@@ -45,6 +46,11 @@ function PastExperienceCard(props: { link: string; title: string; description: s
 export default function Home() {
 	return (
 		<div>
+			<CustomTags
+				title="Home"
+				description="Check out what I do, and explore some of my projects."
+			></CustomTags>
+
 			<div className="lg:flex lg:flex-row justify-evenly items-center">
 				<div className="flex flex-col justify-center lg:p-8 shadow-xl rounded-xl mt-4 bg-lochmara-200 lg:m-8 m-2">
 					<div className="bg-lochmara-100 shadow-xl rounded-xl mb-4 p-6 border-lochmara-300 border-4">
