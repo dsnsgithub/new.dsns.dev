@@ -1,6 +1,10 @@
+import CustomTags from "./components/CustomTags";
+
 export default function Youtube() {
 	return (
 		<div>
+			<CustomTags title="YouTube Downloader" description="Download video/audio from YouTube"></CustomTags>
+
 			<div className="rounded-xl m-4 p-6 border-lochmara-300 border-4 text-center">
 				<h2>This website has been ported, there might be bugs.</h2>
 			</div>

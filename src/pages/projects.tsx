@@ -7,6 +7,8 @@ import whoisImage from "../../public/images/whois.png";
 import marketdbImage from "../../public/images/marketdb.png";
 
 import Link from "next/link";
+import CustomTags from "./components/CustomTags";
+
 
 function Project(props: { href: string; title: string; description: string; image: StaticImageData }) {
 	return (
@@ -23,7 +25,9 @@ function Project(props: { href: string; title: string; description: string; imag
 export default function ProjectPage() {
 	return (
 		<div className="lg:p-8 p-4 shadow-xl rounded-xl bg-lochmara-200 m-2 mt-8 lg:m-8">
-			<div className="text-4xl font-bold mb-4">Web Toys</div>
+			<div className="text-4xl font-bold mb-4">Web Apps</div>
+			<CustomTags title="Projects" description="My collection of web apps."></CustomTags>
+
 			<div className="flex-1 grid md:grid-cols-2 xl:grid-cols-2 gap-4 md:gap-8 ">
 				<Project
 					href="/statistics/"
@@ -43,7 +47,7 @@ export default function ProjectPage() {
 					description="This web app is an online WHOIS lookup without censorship. Many online WHOIS lookups will censor personal information, but this WHOIS lookup will display the raw WHOIS information."
 					image={whoisImage}
 				></Project>
-			</div>
+			Cu</div>
 		</div>
 	);
 }

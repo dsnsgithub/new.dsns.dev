@@ -1,6 +1,10 @@
+import CustomTags from "./components/CustomTags";
+
 export default function RecentGames() {
 	return (
 		<div>
+			<CustomTags title="Recent Games" description="Find status and recent games of any Hypixel player."></CustomTags>
+
 			<div className="rounded-xl m-4 p-6 border-lochmara-300 border-4 text-center">
 				<h2>This website has been ported, there might be bugs.</h2>
 			</div>

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import CustomTags from "./components/CustomTags";
 
 export default function Viewer() {
 	const [data, setData] = useState<{ url: string; coverImage: string }[]>([]);
@@ -37,6 +38,8 @@ export default function Viewer() {
 
 	return (
 		<div className="flex flex-wrap justify-center items-center">
+			<CustomTags title="TikTok Video Viewer" description="View TikTok videos from any sound."></CustomTags>
+
 			{data.map(({ url, coverImage }, index) => (
 				<div key={index} className="m-4">
 					<a target="_blank" rel="noopener noreferrer" href={url}>

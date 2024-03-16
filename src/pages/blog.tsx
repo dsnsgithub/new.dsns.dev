@@ -1,5 +1,6 @@
 import { getSortedPostsData } from "../lib/posts";
 import Link from "next/link";
+import CustomTags from "./components/CustomTags";
 
 interface PostData {
 	id: number;
@@ -25,6 +26,7 @@ export default function Blog({ allPostsData }: BlogProps) {
 	return (
 		<div className="lg:p-8 p-4 shadow-xl rounded-xl bg-lochmara-200 m-2 mt-8 lg:m-8">
 			<div className="text-4xl font-bold mb-4">Blog</div>
+			<CustomTags title="Blog" description="A collection of blog posts."></CustomTags>
 
 			<div className="flex-1 grid md:grid-cols-2 xl:grid-cols-2 gap-4 md:gap-8">
 				{allPostsData.map(({ id, date, title, description }) => (
@@ -38,7 +40,7 @@ export default function Blog({ allPostsData }: BlogProps) {
 						</div>
 					</Link>
 				))}
-			</div>
+			C</div>
 		</div>
 	);
 }

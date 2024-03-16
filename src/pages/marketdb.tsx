@@ -2,6 +2,7 @@ const { useState } = require("react");
 
 import { FormEvent } from "react";
 import database from "./api/marketDB.json";
+import CustomTags from "./components/CustomTags";
 
 function searchProducts(searchTerm: string, database: any) {
 	const results = [];
@@ -126,6 +127,7 @@ export default function FoodDB() {
 	return (
 		<div className="lg:p-8 p-4 shadow-xl rounded-xl bg-lochmara-200 m-2 mt-8 lg:m-8">
 			<h1 className="text-3xl font-semibold mb-4">Generic Supermarket Database</h1>
+			<CustomTags title="Market DB" description="Explore a wide range of products and their prices."></CustomTags>
 
 			<div className="p-4 rounded-lg mt-4 mb-4 shadow-xl border-2 border-lochmara-300 bg-lochmara-100">
 				<h2>Explore a wide range of products and their prices.</h2>
@@ -136,6 +138,7 @@ export default function FoodDB() {
 					</a>
 					.
 				</h2>
+				Cu
 			</div>
 
 			<div className="mb-4">

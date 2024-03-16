@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" class="has-navbar-fixed-top">
+
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Calculate Time Between Two Dates</title>
+
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+	<link rel="stylesheet" href="../static.css">
+</head>
+
+<body>
+	<div class="container">
+		<div class="columns">
+			<div class="column is-half is-offset-one-quarter">
+				<div class="box">
+					<h1 class="title">Date Calculator</h1>
+					<p class="subtitle">
+						Calculates the time between two dates. Works best on Chrome.
+					</p>
+
+					<div class="field">
+						<label class="label">Date #1</label>
+						<input class="input" type="text" id="date1" placeholder="03/26/2021 11:02 AM">
+					</div>
+
+					<div class="field">
+						<label class="label">Date #2</label>
+						<input class="input" type="text" id="date2" placeholder="now">
+					</div>
+
+					<div class="field">
+						<div class="control">
+							<button class="button is-primary" type="submit" id="calculate" onclick="calculateDates();">
+								<span class="icon-calculate"></span>
+								Calculate
+							</button>
+						</div>
+					</div>
+
+				</div>
+
+				<div class="box" id="outputBox" style="display: none;">
+					<h2 class="title">Time Difference: </h2>
+					<h2 id="result"></h2>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="index.js"></script>
+</body>
+
+
+</html>

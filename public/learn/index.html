@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" class="has-navbar-fixed-top">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Learn Vocab</title>
+
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+	<link rel="stylesheet" href="../static.css">
+</head>
+
+<body>
+	<section class="section">
+		<div class="container">
+			<div class="columns">
+				<div class="column is-half is-offset-one-quarter">
+					<div class="box">
+						<h2 style="font-size:30px" id="showCharacter">Type the chinese character for ___</h2>
+
+						<input class="input is-large" type="text" id="chinese" placeholder="汉字" style="margin-top:20px;">
+
+						<br>
+
+						<!-- Results-->
+						<h2 id="results"></h2>
+
+						<button class="button is-primary" id="submit" style="margin-top:20px;">Submit</button>
+
+						<div class="select" style="margin-top:20px;">
+							<select id="select">
+								<option>Chinese Characters (汉字)</option>
+								<option>Pinyin</option>
+								<option>Sentence Patterns</option>
+								<option>Polyatomic Ions</option>
+								<option>中文三成语复习</option>
+							</select>
+						</div>
+
+						<div class="select" style="margin-top:20px;">
+							<select id="lesson">
+								<option>L7</option>
+								<option>L8</option>
+								<option>L9</option>
+								<option>L10</option>
+							</select>
+						</div>
+
+						<button id="pencil" class="button" style="margin-top:20px; background-color: lightcoral;">
+							✏️
+						</button>
+					</div>
+				</div>
+			</div>
+
+			<div class="box" id="pencilArea" style="display: none;">
+				<div class="columns">
+					<div class="column">
+						<canvas style="border: 2px solid gray;" class="js-paper-canvas" height="600%" width="700%"></canvas>
+
+						<br>
+
+						<button class="button is-danger js-canvas-clear is-medium">Clear</button>
+					</div>
+					<div class="column">
+						<div class="js-result-area"></div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+
+	</section>
+
+	<script src="handwriting.js"></script>
+	<script src="index.js"></script>
+</body>
+
+</html>
