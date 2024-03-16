@@ -1,5 +1,4 @@
 const downloadStatus = document.getElementById("downloadStatus");
-const conversionStatus = document.getElementById("conversionStatus");
 
 const round = (number, decimalPlaces) => {
 	const factorOfTen = Math.pow(10, decimalPlaces);
@@ -96,6 +95,15 @@ async function downloadMP3() {
 	}
 }
 
+async function downloadFile(blob, fileName) {
+	const url = URL.createObjectURL(blob);
+	const a = document.createElement("a");
+	a.href = url;
+	a.download = fileName;
+	a.click();
+	URL.revokeObjectURL(url);
+}
+
 const downloadButton = document.getElementById("downloadButton");
 downloadButton.addEventListener("click", downloadMP3);
 
@@ -105,3 +113,73 @@ document.onkeyup = function (event) {
 		downloadMP3();
 	}
 };
+
+const inputFile = document.getElementById("inputFile");
+const convertBtn = document.getElementById("convertBtn");
+const outputDiv = document.getElementById("output");
+const conversionStatus = document.getElementById("conversionStatus");
+
+const { createFFmpeg } = FFmpeg;
+
+async function convertToMp3(inputFile) {
+	const ffmpeg = createFFmpeg({ log: true });
+	await ffmpeg.load();
+
+	ffmpeg.FS("writeFile", "input.webm", await fetchFile(inputFile));
+
+	ffmpeg.setProgress(({ ratio }) => {
+		const percent = round(ratio * 100, 2);
+		console.log(percent);
+		conversionStatus.innerText = percent + "%";
+	});
+
+	await ffmpeg.run("-i", "input.webm", "output.mp3");	
+	
+	const mp3Data = ffmpeg.FS("readFile", "output.mp3");
+	const mp3Blob = new Blob([mp3Data.buffer], { type: "audio/mp3" });
+	const mp3Url = URL.createObjectURL(mp3Blob);
+
+	const audio = new Audio();
+	audio.src = mp3Url;
+	audio.controls = true;
+	outputDiv.innerHTML = "";
+	outputDiv.appendChild(audio);
+
+	await downloadFile(mp3Blob, "output.mp3");
+
+	ffmpeg.FS("unlink", `input.webm`);
+	ffmpeg.FS("unlink", `output.mp3`);
+}
+
+function fetchFile(inputFile) {
+	return new Promise((resolve) => {
+		const reader = new FileReader();
+		reader.onload = (event) => {
+			const arrayBuffer = event.target.result;
+			const uint8Array = new Uint8Array(arrayBuffer);
+			resolve(uint8Array);
+		};
+		reader.readAsArrayBuffer(inputFile.files[0]);
+	});
+}
+
+convertBtn.addEventListener("click", () => {
+	if (inputFile.files.length > 0) {
+		convertToMp3(inputFile);
+	} else {
+		alert("Please select a WebA file.");
+	}
+});
+
+
+// JavaScript to update file name display
+const inputFile2 = document.getElementById('inputFile');
+const selectedFileName = document.getElementById('selectedFileName');
+
+inputFile2.addEventListener("change", function () {
+	if (this.files.length > 0) {
+		selectedFileName.textContent = this.files[0].name;
+	} else {
+		selectedFileName.textContent = "No file selected";
+	}
+});
