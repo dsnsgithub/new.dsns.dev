@@ -4,16 +4,10 @@ Check out what I do, and explore some of my projects.
 
 
 ## Local Development
-First, run the development server:
 
-```bash
+```
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
