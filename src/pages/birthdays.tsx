@@ -1,5 +1,7 @@
 import birthdaysData from "./api/birthdays.json";
 import CustomTags from "./components/CustomTags";
+import useWindowSize from "react-use/lib/useWindowSize";
+import Confetti from "react-confetti";
 
 interface Birthday {
 	name: string;
@@ -27,7 +29,7 @@ export default function Birthdays() {
 			date: new Date(birthday.date + " " + new Date().getFullYear())
 		};
 
-		if (newBirthday.date.getTime() < new Date().getTime()) {
+		if (newBirthday.date.getTime() + 86400000 < new Date().getTime()) {
 			newBirthday.date.setFullYear(new Date().getFullYear() + 1);
 		}
 
@@ -38,8 +40,20 @@ export default function Birthdays() {
 		return new Date(a.date).getTime() - new Date(b.date).getTime();
 	});
 
+	const { width, height } = useWindowSize();
+
+	let birthdayToday = false;
+	for (const birthday of birthdays) {
+		if (birthday.date.getTime() + 86400000 > new Date().getTime() && birthday.date.getTime() < new Date().getTime()) {
+			birthdayToday = true;
+			break;
+		}
+	}
+
 	return (
-		<div className="container mx-auto mt-8 ">
+		<div className="container mx-auto mt-8">
+			{birthdayToday ? <Confetti width={width} height={height * 2}></Confetti> : <></>}
+
 			<CustomTags title="Birthdays" description="List of upcoming birthdays" />
 
 			<div className="lg:p-8 p-4 shadow-xl rounded-xl bg-lochmara-200 m-2 mt-8 lg:m-8">
@@ -49,7 +63,13 @@ export default function Birthdays() {
 						<div key={birthday.name} className="bg-lochmara-100 rounded-xl shadow-md p-6">
 							<h2 className="text-xl font-semibold mb-2">{birthday.name}</h2>
 							<p className="mb-4">
-								{calculateDaysUntilDate(birthday.date)} days ({calculatePercent(birthday.date).toFixed(2)}%)
+								{birthday.date.getTime() + 86400000 > new Date().getTime() && birthday.date.getTime() < new Date().getTime() ? (
+									<p className="font-bold">Happy Birthday {birthday.name}!</p>
+								) : (
+									<>
+										{calculateDaysUntilDate(birthday.date)} days ({calculatePercent(birthday.date).toFixed(2)}%)
+									</>
+								)}
 							</p>
 							<div className="h-4 bg-lochmara-200 border border-lochmara-300 rounded-full overflow-hidden">
 								<div className="bg-lochmara-500 h-full" style={{ width: `${calculatePercent(birthday.date)}%` }}></div>

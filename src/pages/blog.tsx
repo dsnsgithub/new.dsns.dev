@@ -40,7 +40,7 @@ export default function Blog({ allPostsData }: BlogProps) {
 						</div>
 					</Link>
 				))}
-			C</div>
+			</div>
 		</div>
 	);
 }
