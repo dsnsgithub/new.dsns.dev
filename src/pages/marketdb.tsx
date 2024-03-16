@@ -138,7 +138,6 @@ export default function FoodDB() {
 					</a>
 					.
 				</h2>
-				Cu
 			</div>
 
 			<div className="mb-4">

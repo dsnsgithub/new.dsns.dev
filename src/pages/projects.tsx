@@ -47,7 +47,7 @@ export default function ProjectPage() {
 					description="This web app is an online WHOIS lookup without censorship. Many online WHOIS lookups will censor personal information, but this WHOIS lookup will display the raw WHOIS information."
 					image={whoisImage}
 				></Project>
-			Cu</div>
+			</div>
 		</div>
 	);
 }
