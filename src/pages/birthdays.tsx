@@ -2,6 +2,7 @@ import birthdaysData from "./api/birthdays.json";
 import CustomTags from "./components/CustomTags";
 import useWindowSize from "react-use/lib/useWindowSize";
 import Confetti from "react-confetti";
+import { Tooltip } from "react-tooltip";
 
 interface Birthday {
 	name: string;
@@ -61,7 +62,13 @@ export default function Birthdays() {
 				<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
 					{birthdays.map((birthday) => (
 						<div key={birthday.name} className="bg-lochmara-100 rounded-xl shadow-md p-6">
-							<h2 className="text-xl font-semibold mb-2">{birthday.name}</h2>
+							<div className="flex">
+								<Tooltip id={birthday.date.toLocaleDateString()}></Tooltip>
+								<h2 className="text-xl font-semibold mb-2" data-tooltip-id={birthday.date.toLocaleDateString()} data-tooltip-content={birthday.date.toLocaleDateString()}>
+									{birthday.name}
+								</h2>
+							</div>
+
 							<p className="mb-4">
 								{birthday.date.getTime() + 86400000 > new Date().getTime() && birthday.date.getTime() < new Date().getTime() ? (
 									<p className="font-bold">Happy Birthday {birthday.name}!</p>
