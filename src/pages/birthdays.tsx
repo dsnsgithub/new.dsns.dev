@@ -74,7 +74,7 @@ export default function Birthdays() {
 									<p className="font-bold">Happy Birthday {birthday.name}!</p>
 								) : (
 									<>
-										{calculateDaysUntilDate(birthday.date)} days ({calculatePercent(birthday.date).toFixed(2)}%)
+										{calculateDaysUntilDate(birthday.date)} day{calculateDaysUntilDate(birthday.date) === 1 ? "" : "s"} ({calculatePercent(birthday.date).toFixed(2)}%)
 									</>
 								)}
 							</p>
