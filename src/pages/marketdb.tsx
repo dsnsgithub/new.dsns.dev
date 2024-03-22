@@ -1,7 +1,7 @@
 const { useState } = require("react");
 
 import { FormEvent } from "react";
-import database from "./api/marketDB.json";
+import database from "./db/marketDB.json";
 import CustomTags from "./components/CustomTags";
 
 function searchProducts(searchTerm: string, database: any) {

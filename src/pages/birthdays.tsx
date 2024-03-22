@@ -1,4 +1,4 @@
-import birthdaysData from "./api/birthdays.json";
+import birthdaysData from "./db/birthdays.json";
 import CustomTags from "./components/CustomTags";
 import Confetti from "react-confetti";
 import { Tooltip } from "react-tooltip";

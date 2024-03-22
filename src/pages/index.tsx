@@ -46,10 +46,7 @@ function PastExperienceCard(props: { link: string; title: string; description: s
 export default function Home() {
 	return (
 		<div>
-			<CustomTags
-				title="Home"
-				description="Check out what I do, and explore some of my projects."
-			></CustomTags>
+			<CustomTags title="Home" description="Check out what I do, and explore some of my projects."></CustomTags>
 
 			<div className="lg:flex lg:flex-row justify-evenly items-center">
 				<div className="flex flex-col justify-center lg:p-8 shadow-xl rounded-xl mt-4 bg-lochmara-200 lg:m-8 m-2">
