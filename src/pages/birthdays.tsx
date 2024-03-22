@@ -1,8 +1,8 @@
 import birthdaysData from "./api/birthdays.json";
 import CustomTags from "./components/CustomTags";
-import useWindowSize from "react-use/lib/useWindowSize";
 import Confetti from "react-confetti";
 import { Tooltip } from "react-tooltip";
+import { useEffect, useState } from "react";
 
 interface Birthday {
 	name: string;
@@ -23,6 +23,23 @@ function calculatePercent(targetDate: Date): number {
 
 export default function Birthdays() {
 	const birthdays: Birthday[] = [];
+	const [height, setHeight] = useState(0);
+	const [width, setWidth] = useState(0);
+
+	useEffect(() => {
+		const updateDimensions = () => {
+			setHeight(document.body.scrollHeight);
+			setWidth(document.body.scrollWidth);
+		};
+
+		updateDimensions();
+
+		window.addEventListener("resize", updateDimensions);
+
+		return () => {
+			window.removeEventListener("resize", updateDimensions);
+		};
+	}, []);
 
 	for (const birthday of birthdaysData) {
 		const newBirthday: Birthday = {
@@ -41,8 +58,6 @@ export default function Birthdays() {
 		return new Date(a.date).getTime() - new Date(b.date).getTime();
 	});
 
-	const { width, height } = useWindowSize();
-
 	let birthdayToday = false;
 	for (const birthday of birthdays) {
 		if (birthday.date.getTime() + 86400000 > new Date().getTime() && birthday.date.getTime() < new Date().getTime()) {
@@ -53,9 +68,9 @@ export default function Birthdays() {
 
 	return (
 		<div className="container mx-auto mt-8">
-			{birthdayToday ? <Confetti width={width} height={height * 2}></Confetti> : <></>}
+			{birthdayToday && width && height ? <Confetti width={width} height={height}></Confetti> : <></>}
 
-			<CustomTags title="Birthdays" description="List of upcoming birthdays" />
+			<CustomTags title="Birthdays" description="List of upcoming birthdays"></CustomTags>
 
 			<div className="lg:p-8 p-4 shadow-xl rounded-xl bg-lochmara-200 m-2 mt-8 lg:m-8">
 				<h1 className="text-3xl font-semibold mb-4">Birthdays</h1>
@@ -69,15 +84,15 @@ export default function Birthdays() {
 								</h2>
 							</div>
 
-							<p className="mb-4">
+							<div className="mb-4">
 								{birthday.date.getTime() + 86400000 > new Date().getTime() && birthday.date.getTime() < new Date().getTime() ? (
 									<p className="font-bold">Happy Birthday {birthday.name}!</p>
 								) : (
-									<>
+									<p>
 										{calculateDaysUntilDate(birthday.date)} day{calculateDaysUntilDate(birthday.date) === 1 ? "" : "s"} ({calculatePercent(birthday.date).toFixed(2)}%)
-									</>
+									</p>
 								)}
-							</p>
+							</div>
 							<div className="h-4 bg-lochmara-200 border border-lochmara-300 rounded-full overflow-hidden">
 								<div className="bg-lochmara-500 h-full" style={{ width: `${calculatePercent(birthday.date)}%` }}></div>
 							</div>
