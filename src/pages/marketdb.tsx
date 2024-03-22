@@ -4,7 +4,25 @@ import { FormEvent } from "react";
 import database from "./db/marketDB.json";
 import CustomTags from "./components/CustomTags";
 
-function searchProducts(searchTerm: string, database: any) {
+interface Database {
+	[key: string]: {
+		[key: string]: {
+			[key: string]: {
+				description: string;
+				pricePerOunce: number;
+				imageURL: string;
+				caloriesPer100G: number;
+				nutritionPercentage: {
+					carbs: number;
+					fat: number;
+					protein: number;
+				};
+			};
+		};
+	};
+}
+
+function searchProducts(searchTerm: string, database: Database) {
 	const results = [];
 
 	for (const category in database) {
@@ -47,6 +65,40 @@ function capitalizeAndSpace(str: string) {
 	}
 
 	return words.join(" ");
+}
+
+function analyzeItems(database: Database) {
+	let count = 0;
+	let lowestCostItem = "";
+	let highestCostItem = "";
+	let lowestCost = Number.MAX_VALUE;
+	let highestCost = Number.MIN_VALUE;
+
+	for (const category in database) {
+		for (const subCategory in database[category]) {
+			for (const product in database[category][subCategory]) {
+				count++;
+
+				const cost = database[category][subCategory][product].pricePerOunce;
+				if (cost < lowestCost) {
+					lowestCost = cost;
+					lowestCostItem = product;
+				}
+				if (cost > highestCost) {
+					highestCost = cost;
+					highestCostItem = product;
+				}
+			}
+		}
+	}
+
+	return {
+		itemCount: count,
+		lowestCost,
+		lowestCostItem,
+		highestCostItem,
+		highestCost
+	};
 }
 
 function Product(props: {
@@ -111,7 +163,7 @@ function handleInput(e: FormEvent<HTMLInputElement>, setResults: Function) {
 		return;
 	}
 
-	const searchResults = searchProducts(searchTerm, database);
+	const searchResults = searchProducts(searchTerm, database as Database);
 	const currentResults: JSX.Element[] = [];
 
 	for (const index in searchResults) {
@@ -123,6 +175,8 @@ function handleInput(e: FormEvent<HTMLInputElement>, setResults: Function) {
 
 export default function FoodDB() {
 	const [results, setResults] = useState([]);
+
+	const analysis = analyzeItems(database as Database);
 
 	return (
 		<div className="lg:p-8 p-4 shadow-xl rounded-xl bg-lochmara-200 m-2 mt-8 lg:m-8">
@@ -138,6 +192,27 @@ export default function FoodDB() {
 					</a>
 					.
 				</h2>
+
+				<h2 className="text-lg mt-4">Statistics</h2>
+				<ul className="list-disc list-inside">
+					<li>{analysis.itemCount} items</li>
+					<li>
+						Lowest cost item by weight: {capitalizeAndSpace(analysis.lowestCostItem)} at{" "}
+						{analysis.lowestCost.toLocaleString("en-US", {
+							style: "currency",
+							currency: "USD"
+						})}
+						/oz
+					</li>
+					<li>
+						Highest cost item by weight: {capitalizeAndSpace(analysis.highestCostItem)} at{" "}
+						{analysis.highestCost.toLocaleString("en-US", {
+							style: "currency",
+							currency: "USD"
+						})}
+						/oz
+					</li>
+				</ul>
 			</div>
 
 			<div className="mb-4">
