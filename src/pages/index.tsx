@@ -10,7 +10,8 @@ import onlyEggrollsImage from "../../public/images/onlyeggrolls.png";
 import CustomTags from "./components/CustomTags";
 
 import { useLanyard } from "react-use-lanyard";
-
+import rawGames from "./db/gameList.json";
+const gameList = rawGames as { [key: string]: string };
 import { useState } from "react";
 
 function FeatureCard(props: { link: string; title: string; description: string; image: StaticImageData; imageWidth: number; flipped: boolean }) {
@@ -151,23 +152,36 @@ export default function Home() {
 									</>
 								) : (
 									<div className="flex items-center space-x-4">
-										<div className="flex-shrink-0 relative">
-											<img
-												src={`https://cdn.discordapp.com/app-assets/${status.activities[0]?.application_id}/${status.activities[0].assets?.large_image}.png`}
-												alt="Activity Image"
-												className="w-16 h-16 rounded"
-											/>
-											<img
-												src={`https://cdn.discordapp.com/app-assets/${status.activities[0]?.application_id}/${status.activities[0].assets?.small_image}.png`}
-												alt="Activity Image"
-												className="w-6 h-6 rounded right-0 bottom-0 absolute ring-3"
-											/>
-										</div>
+										{status.activities[0].assets ? (
+											<div className="flex-shrink-0 relative">
+												<img
+													src={`https://cdn.discordapp.com/app-assets/${status.activities[0]?.application_id}/${status.activities[0].assets?.large_image}.png`}
+													alt="Activity Image"
+													className="w-16 h-16 rounded"
+												/>
+												<img
+													src={`https://cdn.discordapp.com/app-assets/${status.activities[0]?.application_id}/${status.activities[0].assets?.small_image}.png`}
+													alt="Activity Image"
+													className="w-6 h-6 rounded right-0 bottom-0 absolute ring-3"
+												/>
+											</div>
+										) : gameList[status.activities[0].application_id || ""] ? (
+											<>
+												<img
+													src={`https://cdn.discordapp.com/app-icons/${status.activities[0]?.application_id}/${gameList[status.activities[0].application_id || ""]}.png`}
+													alt="Activity Image"
+													className="w-16 h-16 rounded"
+												/>
+											</>
+										) : (
+											<></>
+										)}
 
 										<div>
 											<h4 className="font-bold">{status.activities[0].name}</h4>
 											<p className="text-sm">{status.activities[0].state}</p>
 											<p className="text-sm">{status.activities[0].details}</p>
+											<p className="text-sm">{formatTime(currentTime - status.activities[0].created_at)} elapsed</p>
 										</div>
 									</div>
 								)}
