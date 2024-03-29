@@ -9,6 +9,10 @@ import truthBeToldImage from "../../public/images/TruthBeTold.jpg";
 import onlyEggrollsImage from "../../public/images/onlyeggrolls.png";
 import CustomTags from "./components/CustomTags";
 
+import { useLanyard } from "react-use-lanyard";
+
+import { useState } from "react";
+
 function FeatureCard(props: { link: string; title: string; description: string; image: StaticImageData; imageWidth: number; flipped: boolean }) {
 	return (
 		<a
@@ -43,7 +47,34 @@ function PastExperienceCard(props: { link: string; title: string; description: s
 	);
 }
 
+function formatTime(milliseconds: number) {
+	const minutes = Math.floor(milliseconds / 1000 / 60);
+	const seconds = Math.floor((milliseconds / 1000) % 60);
+
+	const paddedMinutes = minutes < 10 ? "0" + minutes : minutes;
+	const paddedSeconds = seconds < 10 ? "0" + seconds : seconds;
+
+	return paddedMinutes + ":" + paddedSeconds;
+}
+
+function cutStrings(string: string, maxLength: number) {
+	if (string.length > maxLength) {
+		return string.substring(0, maxLength) + "...";
+	} else {
+		return string;
+	}
+}
+
 export default function Home() {
+	const { loading, status } = useLanyard({
+		userId: "342874998375186432",
+		socket: true
+	});
+
+	const [currentTime, setCurrentTime] = useState(new Date().getTime());
+
+	setInterval(() => setCurrentTime(new Date().getTime()), 1000);
+
 	return (
 		<div>
 			<CustomTags title="Home" description="Check out what I do, and explore some of my projects."></CustomTags>
@@ -85,6 +116,64 @@ export default function Home() {
 							<FaReact className="text-2xl" title="React"></FaReact>
 						</div>
 					</div>
+
+					{loading || !status?.activities || status.activities.length == 0 ? (
+						<></>
+					) : (
+						<div className="bg-lochmara-100 shadow-xl rounded-xl mt-4 p-6 border-lochmara-300 border-4">
+							<div className="text-4xl font-bold mb-4">Status</div>
+							<div>
+								{status.activities[0].name === "Spotify" && status.spotify ? (
+									<>
+										<h3 className="font-bold mb-2">Listening to Spotify</h3>
+
+										<div className="flex items-center space-x-4">
+											<img src={status.spotify?.album_art_url} alt="Album Art" className="w-16 h-16 rounded" />
+											<div>
+												<h4>{cutStrings(status.spotify?.song, 16)}</h4>
+												<p className="text-sm">by {cutStrings(status.spotify?.artist, 16)}</p>
+												<p className="text-sm">on {cutStrings(status.spotify?.album, 16)}</p>
+											</div>
+										</div>
+										<div className="flex items-center space-x-2 mt-2">
+											<span>
+												{formatTime(
+													Math.min(currentTime - (status.spotify?.timestamps?.start || 0), (status.spotify?.timestamps?.end || 0) - (status.spotify?.timestamps?.start || 0))
+												)}
+											</span>
+											<progress
+												value={currentTime - (status.spotify?.timestamps?.start || 0)}
+												max={(status.spotify?.timestamps?.end || 0) - (status.spotify?.timestamps?.start || 0)}
+												className="w-3/4 rounded-xl [&::-webkit-progress-bar]:rounded-lg [&::-webkit-progress-value]:rounded-lg   [&::-webkit-progress-bar]:bg-slate-300 [&::-webkit-progress-value]:bg-lochmara-400 [&::-moz-progress-bar]:bg-lochmara-400"
+											></progress>
+											<span>{formatTime((status.spotify?.timestamps?.end || 0) - (status.spotify?.timestamps?.start || 0))}</span>
+										</div>
+									</>
+								) : (
+									<div className="flex items-center space-x-4">
+										<div className="flex-shrink-0 relative">
+											<img
+												src={`https://cdn.discordapp.com/app-assets/${status.activities[0]?.application_id}/${status.activities[0].assets?.large_image}.png`}
+												alt="Activity Image"
+												className="w-16 h-16 rounded"
+											/>
+											<img
+												src={`https://cdn.discordapp.com/app-assets/${status.activities[0]?.application_id}/${status.activities[0].assets?.small_image}.png`}
+												alt="Activity Image"
+												className="w-6 h-6 rounded right-0 bottom-0 absolute ring-3"
+											/>
+										</div>
+
+										<div>
+											<h4 className="font-bold">{status.activities[0].name}</h4>
+											<p className="text-sm">{status.activities[0].state}</p>
+											<p className="text-sm">{status.activities[0].details}</p>
+										</div>
+									</div>
+								)}
+							</div>
+						</div>
+					)}
 				</div>
 
 				<div className="flex flex-col justify-center p-6 lg:p-8 shadow-xl rounded-xl bg-lochmara-200 m-2 mt-8 lg:m-8">
