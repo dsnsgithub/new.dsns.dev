@@ -171,11 +171,16 @@ export default function Home() {
 														alt="Activity Image"
 														className="w-16 h-16 rounded"
 													/>
-													<img
-														src={`https://cdn.discordapp.com/app-assets/${status.activities[0]?.application_id}/${status.activities[0].assets?.small_image}.png`}
-														alt="Activity Image"
-														className="w-6 h-6 rounded right-0 bottom-0 absolute ring-3"
-													/>
+
+													{status.activities[0].assets?.small_image ? (
+														<img
+															src={`https://cdn.discordapp.com/app-assets/${status.activities[0]?.application_id}/${status.activities[0].assets?.small_image}.png`}
+															alt="Activity Image"
+															className="w-6 h-6 rounded right-0 bottom-0 absolute ring-3"
+														/>
+													) : (
+														<></>
+													)}
 												</div>
 											) : gameList[status.activities[0].application_id || ""] ? (
 												<>
