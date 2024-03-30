@@ -9,10 +9,10 @@ import { useAutoAnimate } from "@formkit/auto-animate/react";
 const poppins = Poppins({ weight: "400", subsets: ["latin"] });
 
 export default function App({ Component, pageProps }: AppProps) {
-	const [elem] = useAutoAnimate({duration: 100});
+	const [page] = useAutoAnimate({ duration: 100 });
 	return (
 		<>
-			<main className={"min-h-screen container mx-auto mt-10 " + poppins.className} ref={elem}>
+			<main className={"min-h-screen container mx-auto mt-10 " + poppins.className} ref={page}>
 				<Navbar />
 				<Component {...pageProps} />
 				<Analytics />
