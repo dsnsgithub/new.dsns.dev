@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 const { useState } = require("react");
 
 import { FormEvent } from "react";

@@ -9,7 +9,6 @@ import marketdbImage from "../../public/images/marketdb.png";
 import Link from "next/link";
 import CustomTags from "./components/CustomTags";
 
-
 function Project(props: { href: string; title: string; description: string; image: StaticImageData }) {
 	return (
 		<Link href={props.href}>
@@ -29,24 +28,22 @@ export default function ProjectPage() {
 			<CustomTags title="Projects" description="My collection of web apps."></CustomTags>
 
 			<div className="flex-1 grid md:grid-cols-2 xl:grid-cols-2 gap-4 md:gap-8 ">
-				<Project
-					href="/statistics/"
-					title="Hypixel Level Statistics"
-					description="This web app calculates statistics for Hypixel levels and plots the change over time."
-					image={statisticsImage}
-				></Project>
-
 				<Project href="/recentgames/" title="Hypixel Player Lookup" description="Find the status and recent games of any Hypixel player." image={recentGamesImage} />
-				<Project href="/youtube/" title="YouTube Video Downloader" description="This web app downloads high-quality audio/video from YouTube videos." image={youtubeImage} />
 				<Project href="/marketdb/" title="Generic Supermarket Database" description="Explore a wide range of products and their prices." image={marketdbImage}></Project>
-				<Project href="/speedtest/" title="Internet Speedtest" description="This web app is a bloat-free speedtest." image={speedtestImage} />
-
+				<Project href="/youtube/" title="YouTube Video Downloader" description="This web app downloads high-quality audio/video from YouTube videos." image={youtubeImage} />
 				<Project
 					href="/whois/"
 					title="WHOIS Domain Lookup"
 					description="This web app is an online WHOIS lookup without censorship. Many online WHOIS lookups will censor personal information, but this WHOIS lookup will display the raw WHOIS information."
 					image={whoisImage}
 				></Project>
+				<Project
+					href="/statistics/"
+					title="Hypixel Level Statistics"
+					description="This web app calculates statistics for Hypixel levels and plots the change over time."
+					image={statisticsImage}
+				></Project>
+				<Project href="/speedtest/" title="Internet Speedtest" description="This web app is a bloat-free speedtest." image={speedtestImage} />
 			</div>
 		</div>
 	);

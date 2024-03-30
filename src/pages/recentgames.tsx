@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { useState } from "react";
 import CustomTags from "./components/CustomTags";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
@@ -195,7 +196,7 @@ export default function RecentGames() {
 
 								{actualUsername != -1 && uuid && (statusData || recentGamesData) ? (
 									<div className="p-6 shadow-xl bg-lochmara-100 border-2 border-lochmara-300 rounded-xl m-2">
-										<img src={`https://hypixel.paniek.de/signature/${uuid}/general-tooltip`}></img>
+										<img src={`https://hypixel.paniek.de/signature/${uuid}/general-tooltip`} alt="Hypixel Player Information"></img>
 									</div>
 								) : (
 									<></>
@@ -205,7 +206,7 @@ export default function RecentGames() {
 							{actualUsername != -1 && uuid && (statusData || recentGamesData) ? (
 								<div className="flex flex-col ">
 									<div className="p-6 shadow-xl bg-lochmara-100 border-2 border-lochmara-300 rounded-xl m-2">
-										<img src={`https://mc-heads.net/body/${uuid}`}></img>
+										<img src={`https://mc-heads.net/body/${uuid}`} alt="Minecraft Player Model"></img>
 									</div>
 								</div>
 							) : (

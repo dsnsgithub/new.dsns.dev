@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { FaCloudflare, FaGithub, FaJsSquare, FaPython, FaYoutube, FaLinux, FaGitAlt, FaReact, FaEnvelope } from "react-icons/fa";
 import { useState, useEffect } from "react";
 import { useLanyard } from "react-use-lanyard";
