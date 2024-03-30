@@ -54,9 +54,9 @@ export default function RecentGames() {
 	const [recentGamesData, setRecentGamesData] = useState<RecentGamesData>();
 	const [gamesList, setGamesList] = useState<HypixelAPIResponse>();
 
-	const [resultDiv] = useAutoAnimate({ duration: 500 });
-	const [innerResultDiv] = useAutoAnimate({ duration: 500 });
-	const [innerRecentGamesDiv] = useAutoAnimate({ duration: 500 });
+	const [resultDiv] = useAutoAnimate();
+	const [innerResultDiv] = useAutoAnimate();
+	const [innerRecentGamesDiv] = useAutoAnimate();
 
 	const [statusVisible, setStatusVisible] = useState(false);
 
@@ -120,10 +120,10 @@ export default function RecentGames() {
 						</div>
 					)}
 					{statusVisible ? (
-						<div className="flex flex-row justify-around mt-1 items-center">
+						<div className="lg:flex lg:flex-row lg:justify-around mt-1 items-center">
 							<div className="flex flex-col" ref={innerResultDiv}>
 								{actualUsername != -1 && statusData ? (
-									<div className="p-6 shadow-xl bg-lochmara-100 border-2 border-lochmara-300 rounded-xl m-2">
+									<div className="p-6 shadow-xl bg-lochmara-100 border-2 border-lochmara-300 rounded-xl lg:m-2 mt-1">
 										<h2 className="text-2xl font-semibold mb-3">Status</h2>
 
 										{statusData.success && statusData.session && statusData.session.online && gamesList ? (
@@ -149,7 +149,7 @@ export default function RecentGames() {
 								)}
 
 								{actualUsername != -1 && recentGamesData && (recentGamesData?.games?.length || -1) > 0 ? (
-									<div className="p-6 shadow-xl bg-lochmara-100 border-2 border-lochmara-300 rounded-xl m-2" ref={innerRecentGamesDiv}>
+									<div className="p-6 shadow-xl bg-lochmara-100 border-2 border-lochmara-300 rounded-xl lg:m-2 mt-1" ref={innerRecentGamesDiv}>
 										<h2 className="text-2xl font-semibold mb-3">Recent Games</h2>
 										<div className="overflow-x-auto">
 											<table className="w-full table-auto">
