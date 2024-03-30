@@ -1,6 +1,13 @@
+import { useEffect } from "react";
 import CustomTags from "./components/CustomTags";
 
 export default function PPI() {
+	useEffect(() => {
+		setTimeout(() => {
+			window.scrollTo(0, 0);
+		}, 100);
+	});
+	
 	return (
 		<div>
 			<CustomTags title="PPI Calculator" description="Calculate PPI for a given screen size and resolution"></CustomTags>

@@ -1,6 +1,13 @@
 import CustomTags from "./components/CustomTags";
+import { useEffect } from "react";
 
 export default function Electric() {
+	useEffect(() => {
+		setTimeout(() => {
+			window.scrollTo(0, 0);
+		}, 100);
+	});
+	
 	return (
 		<div>
 			<CustomTags title="Electricity Calculator" description="Calculate the cost of an electric car and compare to gas."></CustomTags>

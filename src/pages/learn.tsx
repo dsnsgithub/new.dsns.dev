@@ -1,6 +1,13 @@
 import CustomTags from "./components/CustomTags";
+import { useEffect } from "react";
 
 export default function Learn() {
+	useEffect(() => {
+		setTimeout(() => {
+			window.scrollTo(0, 0);
+		}, 100);
+	});
+
 	return (
 		<div>
 			<CustomTags title="Learn" description="Learn/memorize new vocabulary"></CustomTags>

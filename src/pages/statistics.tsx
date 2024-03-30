@@ -1,6 +1,14 @@
+import { useEffect } from "react";
 import CustomTags from "./components/CustomTags";
 
 export default function Statistics() {
+
+	useEffect(() => {
+		setTimeout(() => {
+			window.scrollTo(0, 0);
+		}, 100);
+	});
+	
 	return (
 		<div>
 			<CustomTags title="Hypixel Player Statistics" description="Compare Hypixel Statistics between any Hypixel player."></CustomTags>

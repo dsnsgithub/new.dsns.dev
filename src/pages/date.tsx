@@ -1,6 +1,13 @@
 import CustomTags from "./components/CustomTags";
+import { useEffect } from "react";
 
 export default function Date() {
+	useEffect(() => {
+		setTimeout(() => {
+			window.scrollTo(0, 0);
+		}, 100);
+	});
+	
 	return (
 		<div>
 			<CustomTags title="Date" description="Find the number of days between two dates"></CustomTags>
