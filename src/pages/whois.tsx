@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 import CustomTags from "./components/CustomTags";
+import { FaSearch } from "react-icons/fa";
 
 export default function WhoIs() {
 	const [domain, setDomain] = useState("");
@@ -52,7 +53,8 @@ export default function WhoIs() {
 						onInput={(e) => setDomain((e.target as HTMLInputElement).value)}
 						onKeyDown={(e) => e.key === "Enter" && handleInput()}
 					></input>
-					<button className="p-4 shadow-xl bg-lochmara-300 border-2 border-lochmara-400 rounded-xl ml-4" onClick={() => handleInput()}>
+					<button className="p-4 shadow-xl bg-lochmara-300 border-2 border-lochmara-400 rounded-xl ml-4 flex flex-row items-center" onClick={() => handleInput()}>
+						<FaSearch title="Search" className="mr-3"></FaSearch>
 						Lookup
 					</button>
 				</div>

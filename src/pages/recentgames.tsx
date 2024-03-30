@@ -2,6 +2,7 @@
 import { useState } from "react";
 import CustomTags from "./components/CustomTags";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
+import { FaSearch } from "react-icons/fa";
 
 interface StatusData {
 	success: boolean;
@@ -101,12 +102,13 @@ export default function RecentGames() {
 					<input
 						type="text"
 						id="inputBox"
-						placeholder="DSNS"
+						placeholder="Search..."
 						className="px-6 py-4 border rounded-lg focus:outline-none focus:border-lochmara-500 flex-grow text-xl w-5/6"
 						onInput={(e) => setUsername((e.target as HTMLInputElement).value)}
 						onKeyDown={(e) => e.key === "Enter" && handleInput()}
 					></input>
-					<button className="p-4 shadow-xl bg-lochmara-300 border-2 border-lochmara-400 rounded-xl ml-4" onClick={() => handleInput()}>
+					<button className="p-4 shadow-xl bg-lochmara-300 border-2 border-lochmara-400 rounded-xl ml-4 flex flex-row items-center" onClick={() => handleInput()}>
+						<FaSearch title="Search" className="mr-3"></FaSearch>
 						Lookup
 					</button>
 				</div>
