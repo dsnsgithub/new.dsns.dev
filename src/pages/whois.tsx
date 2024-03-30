@@ -48,11 +48,11 @@ export default function WhoIs() {
 						type="text"
 						id="inputBox"
 						placeholder="Search..."
-						className="px-6 py-4 border rounded-lg focus:outline-none focus:border-lochmara-500 flex-grow text-xl"
+						className="px-6 py-4 border rounded-lg focus:outline-none focus:border-lochmara-500 text-xl flex-grow w-5/6"
 						onInput={(e) => setDomain((e.target as HTMLInputElement).value)}
 						onKeyDown={(e) => e.key === "Enter" && handleInput()}
 					></input>
-					<button className="p-4 shadow-xl bg-lochmara-300 border-2 border-lochmara-400 rounded-xl ml-4 w-32" onClick={() => handleInput()}>
+					<button className="p-4 shadow-xl bg-lochmara-300 border-2 border-lochmara-400 rounded-xl ml-4" onClick={() => handleInput()}>
 						Lookup
 					</button>
 				</div>
