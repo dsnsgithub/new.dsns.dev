@@ -4,7 +4,7 @@ import CustomTags from "./components/CustomTags";
 
 export default function WhoIs() {
 	const [domain, setDomain] = useState("");
-	const [results, setResults] = useState([<></>]);
+	const [results, setResults] = useState<JSX.Element[]>();
 	const [parent] = useAutoAnimate();
 
 	async function handleInput() {
@@ -57,7 +57,17 @@ export default function WhoIs() {
 					</button>
 				</div>
 
-				<div ref={parent}>{results.length > 1 ? <div className="bg-lochmara-100 border-2 border-lochmara-400 p-4 rounded-xl">{results}</div> : <></>}</div>
+				<div ref={parent}>
+					{(results?.length || 0) > 1 ? (
+						<div className="bg-lochmara-100 border-2 border-lochmara-400 p-4 rounded-xl">{results}</div>
+					) : (results?.length || 0) == 1 ? (
+						<div className="bg-lochmara-100 border-2 border-lochmara-400 p-4 rounded-xl text-center">
+							<h2 className="text-2xl text-red-500">Invalid domain name. Please try again.</h2>
+						</div>
+					) : (
+						<></>
+					)}
+				</div>
 			</div>
 		</div>
 	);
