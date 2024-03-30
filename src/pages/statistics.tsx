@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import CustomTags from "./components/CustomTags";
 
 export default function Statistics() {
-
 	useEffect(() => {
 		setTimeout(() => {
 			window.scrollTo(0, 0);

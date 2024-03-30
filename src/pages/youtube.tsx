@@ -1,6 +1,14 @@
+import { useEffect } from "react";
+
 import CustomTags from "./components/CustomTags";
 
 export default function Youtube() {
+	useEffect(() => {
+		setTimeout(() => {
+			window.scrollTo(0, 0);
+		}, 100);
+	});
+
 	return (
 		<div>
 			<CustomTags title="YouTube Downloader" description="Download video/audio from YouTube"></CustomTags>
