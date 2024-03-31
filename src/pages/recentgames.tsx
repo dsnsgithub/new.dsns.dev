@@ -76,11 +76,14 @@ export default function RecentGames() {
 
 			const status = await fetch(`https://hypixel.dsns.dev/status/${data["id"]}`);
 			const recentGames = await fetch(`https://hypixel.dsns.dev/recentgames/${data["id"]}`);
-			const games = await fetch(`https://api.hypixel.net/resources/games`);
+
+			if (!gamesList) {
+				const games = await fetch(`https://api.hypixel.net/resources/games`);
+				setGamesList(await games.json());
+			}
 
 			setStatusData(await status.json());
 			setRecentGamesData(await recentGames.json());
-			setGamesList(await games.json());
 
 			setStatusVisible(true);
 		} catch (error) {
