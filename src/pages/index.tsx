@@ -165,7 +165,7 @@ export default function Home() {
 										</>
 									) : (
 										<div className="flex items-center space-x-4">
-											{status.activities[0].assets ? (
+											{status.activities[0].assets?.large_image && status.activities[0].assets?.small_image ? (
 												<div className="flex-shrink-0 relative">
 													<img
 														src={`https://cdn.discordapp.com/app-assets/${status.activities[0]?.application_id}/${status.activities[0].assets?.large_image}.png`}
@@ -173,16 +173,24 @@ export default function Home() {
 														className="w-16 h-16 rounded"
 													/>
 
-													{status.activities[0].assets?.small_image ? (
-														<img
-															src={`https://cdn.discordapp.com/app-assets/${status.activities[0]?.application_id}/${status.activities[0].assets?.small_image}.png`}
-															alt="Activity Image"
-															className="w-6 h-6 rounded right-0 bottom-0 absolute ring-3"
-														/>
-													) : (
-														<></>
-													)}
+													<img
+														src={`https://cdn.discordapp.com/app-assets/${status.activities[0]?.application_id}/${status.activities[0].assets?.small_image}.png`}
+														alt="Activity Image"
+														className="w-6 h-6 rounded right-0 bottom-0 absolute ring-3"
+													/>
 												</div>
+											) : status.activities[0].assets?.large_image ? (
+												<img
+													src={`https://cdn.discordapp.com/app-assets/${status.activities[0]?.application_id}/${status.activities[0].assets?.large_image}.png`}
+													alt="Activity Image"
+													className="w-16 h-16 rounded"
+												/>
+											) : status.activities[0].assets?.small_image ? (
+												<img
+													src={`https://cdn.discordapp.com/app-assets/${status.activities[0]?.application_id}/${status.activities[0].assets?.small_image}.png`}
+													alt="Activity Image"
+													className="w-16 h-16 rounded"
+												/>
 											) : gameList[status.activities[0].application_id || ""] ? (
 												<>
 													<img

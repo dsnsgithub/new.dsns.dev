@@ -57,6 +57,11 @@ function analyzeItems(database: any) {
 	let lowestCost = Number.MAX_VALUE;
 	let highestCost = Number.MIN_VALUE;
 
+	let lowestCalPerKgItem = "";
+	let highestCalPerKgItem = "";
+	let lowestCalPerKg = Number.MAX_VALUE;
+	let highestCalPerKg = Number.MIN_VALUE;
+	
 	for (const category in database) {
 		for (const subCategory in database[category]) {
 			for (const product in database[category][subCategory]) {
@@ -71,6 +76,16 @@ function analyzeItems(database: any) {
 					highestCost = cost;
 					highestCostItem = product;
 				}
+
+				let caloriesPer100G = database[category][subCategory][product].caloriesPer100G;
+				if (caloriesPer100G < lowestCalPerKg) {
+					lowestCalPerKgItem = product;
+					lowestCalPerKg = database[category][subCategory][product].caloriesPer100G;
+				}
+				if (caloriesPer100G > highestCalPerKg) {
+					highestCalPerKgItem = product;
+					highestCalPerKg = database[category][subCategory][product].caloriesPer100G;
+				}
 			}
 		}
 	}
@@ -80,7 +95,11 @@ function analyzeItems(database: any) {
 		lowestCost,
 		lowestCostItem,
 		highestCostItem,
-		highestCost
+		highestCost,
+		lowestCalPerKg,
+		lowestCalPerKgItem,
+		highestCalPerKg,
+		highestCalPerKgItem
 	};
 }
 
@@ -118,6 +137,7 @@ function Product(props: {
 						</div>
 						{props["result"]["contents"]["nutritionPercentage"] ? (
 							<>
+								{/* <div className="rounded-xl bg-orange-600 text-white p-2 ml-2 md:mb-3 lg:mb-0">{props["result"]["contents"]["caloriesPer100G"]} cal/100g</div> */}
 								<div className="rounded-xl bg-green-600 text-white p-2 ml-2 md:mb-3 lg:mb-0">Carbs: {props["result"]["contents"]["nutritionPercentage"]["carbs"]}%</div>
 								<div className="rounded-xl bg-yellow-600 text-white p-2 ml-2 md:mb-3 lg:mb-0">Fat: {props["result"]["contents"]["nutritionPercentage"]["fat"]}%</div>
 								<div className="rounded-xl bg-red-600 text-white p-2 ml-2 md:mb-3 lg:mb-0">Protein: {props["result"]["contents"]["nutritionPercentage"]["protein"]}%</div>
@@ -195,6 +215,12 @@ export default function FoodDB() {
 						})}
 						/oz
 					</li>
+					{/* <li>
+						Least Calories Per 100g: {capitalizeAndSpace(analysis.lowestCalPerKgItem)} at {analysis.lowestCalPerKg} cal/100G
+					</li>
+					<li>
+						Highest cost item by weight: {capitalizeAndSpace(analysis.highestCalPerKgItem)} at {analysis.highestCalPerKg} cal/100G
+					</li> */}
 				</ul>
 			</div>
 
