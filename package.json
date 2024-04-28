@@ -10,22 +10,17 @@
   },
   "dependencies": {
     "@distube/ytdl-core": "^4.13.3",
-    "@ffmpeg/ffmpeg": "^0.12.10",
-    "@ffmpeg/util": "^0.12.1",
     "@formkit/auto-animate": "^0.8.1",
     "@types/whois-json": "^2.0.4",
     "axios": "^1.6.7",
-    "gray-matter": "^4.0.3",
     "next": "14.1.0",
     "react": "^18.2.0",
+    "react-code-blocks": "^0.1.6",
     "react-confetti": "^6.1.0",
     "react-dom": "^18.2.0",
     "react-icons": "^5.0.1",
     "react-tooltip": "^5.26.3",
     "react-use-lanyard": "^0.3.1",
-    "remark": "^15.0.1",
-    "remark-html": "^16.0.1",
-    "remark-slug": "^7.0.1",
     "whois-json": "^2.0.4"
   },
   "devDependencies": {
