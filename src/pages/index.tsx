@@ -85,6 +85,10 @@ export default function Home() {
 		setTimeout(() => setStatusVisible(true), 500);
 	}, []);
 
+	if (status?.activities) {
+		status.activities = status?.activities.filter((activity) => activity.id != "custom");
+	}
+
 	return (
 		<div>
 			<CustomTags title="Home" description="Check out what I do, and explore some of my projects."></CustomTags>
