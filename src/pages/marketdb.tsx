@@ -40,16 +40,6 @@ function calculateRelevance(product: string, searchTerm: string) {
 	return matches;
 }
 
-function capitalizeAndSpace(str: string) {
-	let words = str.split("-");
-
-	for (let i = 0; i < words.length; i++) {
-		words[i] = words[i].charAt(0).toUpperCase() + words[i].slice(1);
-	}
-
-	return words.join(" ");
-}
-
 function analyzeItems(database: any) {
 	let count = 0;
 	let lowestCostItem = "";
@@ -61,12 +51,13 @@ function analyzeItems(database: any) {
 	let highestCalPerKgItem = "";
 	let lowestCalPerKg = Number.MAX_VALUE;
 	let highestCalPerKg = Number.MIN_VALUE;
-	
+
 	for (const category in database) {
 		for (const subCategory in database[category]) {
 			for (const product in database[category][subCategory]) {
 				count++;
 
+				const name = database[category][subCategory][product].name;
 				const cost = database[category][subCategory][product].pricePerOunce;
 				if (cost < lowestCost) {
 					lowestCost = cost;
@@ -74,16 +65,16 @@ function analyzeItems(database: any) {
 				}
 				if (cost > highestCost) {
 					highestCost = cost;
-					highestCostItem = product;
+					highestCostItem = name;
 				}
 
 				let caloriesPer100G = database[category][subCategory][product].caloriesPer100G;
 				if (caloriesPer100G < lowestCalPerKg) {
-					lowestCalPerKgItem = product;
+					lowestCalPerKgItem = name;
 					lowestCalPerKg = database[category][subCategory][product].caloriesPer100G;
 				}
 				if (caloriesPer100G > highestCalPerKg) {
-					highestCalPerKgItem = product;
+					highestCalPerKgItem = name;
 					highestCalPerKg = database[category][subCategory][product].caloriesPer100G;
 				}
 			}
@@ -108,6 +99,7 @@ function Product(props: {
 		product: string;
 		relevance: number;
 		contents: {
+			name: string;
 			description: string;
 			pricePerOunce: number;
 			caloriesPer100G: number;
@@ -125,7 +117,7 @@ function Product(props: {
 		<a href={props.result.url} target="_blank">
 			<div className="bg-lochmara-100 p-4 rounded-lg shadow-lg border-lochmara-300 border-2 relative flex flex-col lg:flex-row justify-between">
 				<div className="lg:w-1/2">
-					<h3 className="text-lg font-bold">{capitalizeAndSpace(props["result"]["product"])}</h3>
+					<h3 className="text-lg font-bold">{props.result.contents.name}</h3>
 					{props["result"]["contents"]["description"] ? <p className="mb-4">{props["result"]["contents"]["description"]}</p> : <p className="mb-2">No description provided.</p>}
 					<div className="flex items-center text-sm flex-wrap">
 						<div className="rounded-xl bg-lochmara-600 text-white p-2 md:mb-3 lg:mb-0">
@@ -149,7 +141,7 @@ function Product(props: {
 				</div>
 
 				{props["result"]["contents"]["imageURL"] ? (
-					<img src={props["result"]["contents"]["imageURL"]} alt={capitalizeAndSpace(props.result.product)} className="mb-4 rounded-lg lg:mb-0 lg:ml-4 lg:w-72 lg:h-72" />
+					<img src={props["result"]["contents"]["imageURL"]} alt={props.result.contents.name} className="mb-4 rounded-lg lg:mb-0 lg:ml-4 lg:w-72 lg:h-72" />
 				) : (
 					<></>
 				)}
@@ -200,7 +192,7 @@ export default function FoodDB() {
 				<ul className="list-disc list-inside">
 					<li>{analysis.itemCount} items</li>
 					<li>
-						Lowest cost item by weight: {capitalizeAndSpace(analysis.lowestCostItem)} at{" "}
+						Lowest cost item by weight: {analysis.lowestCostItem} at{" "}
 						{analysis.lowestCost.toLocaleString("en-US", {
 							style: "currency",
 							currency: "USD"
@@ -208,7 +200,7 @@ export default function FoodDB() {
 						/oz
 					</li>
 					<li>
-						Highest cost item by weight: {capitalizeAndSpace(analysis.highestCostItem)} at{" "}
+						Highest cost item by weight: {analysis.highestCostItem} at{" "}
 						{analysis.highestCost.toLocaleString("en-US", {
 							style: "currency",
 							currency: "USD"
@@ -216,10 +208,10 @@ export default function FoodDB() {
 						/oz
 					</li>
 					{/* <li>
-						Least Calories Per 100g: {capitalizeAndSpace(analysis.lowestCalPerKgItem)} at {analysis.lowestCalPerKg} cal/100G
+						Least Calories Per 100g: {analysis.lowestCalPerKgItem} at {analysis.lowestCalPerKg} cal/100G
 					</li>
 					<li>
-						Highest cost item by weight: {capitalizeAndSpace(analysis.highestCalPerKgItem)} at {analysis.highestCalPerKg} cal/100G
+						Highest cost item by weight: {analysis.highestCalPerKgItem} at {analysis.highestCalPerKg} cal/100G
 					</li> */}
 				</ul>
 			</div>
