@@ -61,7 +61,7 @@ function analyzeItems(database: any) {
 				const cost = database[category][subCategory][product].pricePerOunce;
 				if (cost < lowestCost) {
 					lowestCost = cost;
-					lowestCostItem = product;
+					lowestCostItem = name;
 				}
 				if (cost > highestCost) {
 					highestCost = cost;
