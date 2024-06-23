@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" class="has-navbar-fixed-top">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>YouTube Video Downloader</title>
+
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+	<link rel="stylesheet" href="../static.css">
+
+	<script src="ffmpeg.min.js"></script>
+</head>
+
+<body>
+	<div class="container">
+		<div class="columns">
+			<div class="column is-half is-offset-one-quarter">
+				<div class="box">
+					<h1 class="title">
+						YouTube Video Downloader
+					</h1>
+
+					<div class="field">
+						<label class="label">YouTube Link</label>
+						<div class="control">
+							<input id="downloadLink" class="input" type="text" name="link" placeholder="https://www.youtube.com/watch?v=02YqGCqY2qo">
+						</div>
+					</div>
+
+					<div class="field is-grouped">
+						<div class="control">
+							<div class="select">
+								<select class="select" id="fileType">
+									<option value="mp4audio">MP4 with Audio (720p/360p)</option>
+									<option value="mp4high">MP4 (NO AUDIO/HIGH QUALITY)</option>
+									<option value="webm">WebA (Audio)</option>
+								</select>
+							</div>
+						</div>
+
+						<div class="control">
+							<button class="button is-primary" id="downloadButton" type="submit">
+								<span class="icon-queue_music"></span>
+								Download
+							</button>
+						</div>
+					</div>
+				</div>
+
+				<div class="box">
+					<div class="field">
+						<label class="label" style="display:inline-block;">Download Status:</label>
+						<div class="control" style="display:inline-block;">
+							<p id="downloadStatus">
+								Waiting for download to start...
+							</p>
+						</div>
+					</div>
+
+					<video id="mp4play" style="width:100%; display: none;" controls src=""></video>
+				</div>
+
+
+
+				<div class="box">
+					<h3 class="title is-4">
+						WebA to MP3 Converter
+					</h3>
+					
+					<div class="columns">
+						<div class="column">
+							<div class="file has-name is-boxed is-flex">
+								<label class="file-label">
+									<input class="file-input" type="file" id="inputFile" accept="audio/weba">
+									<span class="file-cta">
+										<span class="file-icon">
+											<i class="fas fa-upload"></i>
+										</span>
+										<span class="file-label">Choose a file…</span>
+									</span>
+									<span id="selectedFileName" class="file-name">No file selected</span>
+								</label>
+							</div>
+
+							<button id="convertBtn" class="button is-primary mt-2">Convert to MP3</button>
+						</div>
+
+						<div class="column">
+							<div>
+								<label class="label" style="display:inline-block;">Conversion Status:</label>
+								<div class="control" style="display:inline-block;">
+									<p id="conversionStatus">
+										Waiting for conversion to start...
+									</p>
+								</div>
+								<div id="output"></div>
+							</div>
+						</div>
+					</div>
+
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<script src="index.js"></script>
+</body>
+
+
+</html>

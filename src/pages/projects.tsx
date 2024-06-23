@@ -1,6 +1,7 @@
 import Image, { StaticImageData } from "next/image";
 import statisticsImage from "../../public/images/statistics.png";
 import recentGamesImage from "../../public/images/recentgames.png";
+import youtubeImage from "../../public/images/youtube.png";
 import speedtestImage from "../../public/images/speedtest.png";
 import whoisImage from "../../public/images/whois.png";
 import marketdbImage from "../../public/images/marketdb.png";
@@ -29,6 +30,7 @@ export default function ProjectPage() {
 			<div className="flex-1 grid md:grid-cols-2 xl:grid-cols-2 gap-4 md:gap-8 ">
 				<Project href="/recentgames/" title="Hypixel Player Lookup" description="Find the status and recent games of any Hypixel player." image={recentGamesImage} />
 				<Project href="/marketdb/" title="Generic Supermarket Database" description="Explore a wide range of products and their prices." image={marketdbImage}></Project>
+				<Project href="/youtube/" title="YouTube Video Downloader" description="This web app downloads high-quality audio/video from YouTube videos." image={youtubeImage} />
 				<Project
 					href="/whois/"
 					title="WHOIS Domain Lookup"
