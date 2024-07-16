@@ -172,26 +172,42 @@ export default function Home() {
 											{status.activities[0].assets?.large_image && status.activities[0].assets?.small_image ? (
 												<div className="flex-shrink-0 relative">
 													<img
-														src={`https://cdn.discordapp.com/app-assets/${status.activities[0]?.application_id}/${status.activities[0].assets?.large_image}.png`}
+														src={
+															status.activities[0].assets.large_image.startsWith("mp:external/")
+																? `https://media.discordapp.net/external/${status.activities[0].assets.large_image.replace("mp:external/", "")}`
+																: `https://cdn.discordapp.com/app-assets/${status.activities[0]?.application_id}/${status.activities[0].assets?.large_image}.png`
+														}
 														alt="Activity Image"
 														className="w-16 h-16 rounded"
 													/>
 
 													<img
-														src={`https://cdn.discordapp.com/app-assets/${status.activities[0]?.application_id}/${status.activities[0].assets?.small_image}.png`}
+														src={
+															status.activities[0].assets.small_image.startsWith("mp:external/")
+																? `https://media.discordapp.net/external/${status.activities[0].assets.small_image.replace("mp:external/", "")}`
+																: `https://cdn.discordapp.com/app-assets/${status.activities[0]?.application_id}/${status.activities[0].assets?.small_image}.png`
+														}
 														alt="Activity Image"
 														className="w-6 h-6 rounded right-0 bottom-0 absolute ring-3"
 													/>
 												</div>
 											) : status.activities[0].assets?.large_image ? (
 												<img
-													src={`https://cdn.discordapp.com/app-assets/${status.activities[0]?.application_id}/${status.activities[0].assets?.large_image}.png`}
+													src={
+														status.activities[0].assets.large_image.startsWith("mp:external/")
+															? `https://media.discordapp.net/external/${status.activities[0].assets.large_image.replace("mp:external/", "")}`
+															: `https://cdn.discordapp.com/app-assets/${status.activities[0]?.application_id}/${status.activities[0].assets?.large_image}.png`
+													}
 													alt="Activity Image"
 													className="w-16 h-16 rounded"
 												/>
 											) : status.activities[0].assets?.small_image ? (
 												<img
-													src={`https://cdn.discordapp.com/app-assets/${status.activities[0]?.application_id}/${status.activities[0].assets?.small_image}.png`}
+													src={
+														status.activities[0].assets.small_image.startsWith("mp:external/")
+															? `https://media.discordapp.net/external/${status.activities[0].assets.small_image.replace("mp:external/", "")}`
+															: `https://cdn.discordapp.com/app-assets/${status.activities[0]?.application_id}/${status.activities[0].assets?.small_image}.png`
+													}
 													alt="Activity Image"
 													className="w-16 h-16 rounded"
 												/>
