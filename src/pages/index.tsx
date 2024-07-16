@@ -85,30 +85,33 @@ function DiscordCard(props: { statusVisible: boolean; setStatusVisible: Function
 	}
 
 	if (activity.name === "Spotify" && props.status.spotify) {
+		const startTime = props.status.spotify?.timestamps?.start || 0;
+		const endTime = props.status.spotify?.timestamps?.end || 0;
+		const songDuration = endTime - startTime;
+
+		const spotify = props.status.spotify;
+
 		return (
 			<>
 				<h3 className="font-bold mb-2">Listening to Spotify</h3>
 
 				<div className="flex items-center space-x-4">
-					<img src={props.status.spotify?.album_art_url} alt="Album Art" className="w-16 h-16 rounded" />
+					<img src={spotify.album_art_url} alt="Album Art" className="w-16 h-16 rounded" />
 					<div>
-						<h4>{cutStrings(props.status.spotify?.song, 16)}</h4>
-						<p className="text-sm">by {cutStrings(props.status.spotify?.artist, 16)}</p>
-						<p className="text-sm">on {cutStrings(props.status.spotify?.album, 16)}</p>
+						<h4>{cutStrings(spotify.song, 16)}</h4>
+						<p className="text-sm">by {cutStrings(spotify.artist, 16)}</p>
+						<p className="text-sm">on {cutStrings(spotify.album, 16)}</p>
 					</div>
 				</div>
+
 				<div className="flex items-center space-x-2 mt-2">
-					<span>
-						{formatTime(
-							Math.min(currentTime - (props.status.spotify?.timestamps?.start || 0), (props.status.spotify?.timestamps?.end || 0) - (props.status.spotify?.timestamps?.start || 0))
-						)}
-					</span>
+					<span>{formatTime(Math.min(currentTime - startTime, songDuration))}</span>
 					<progress
-						value={currentTime - (props.status.spotify?.timestamps?.start || 0)}
-						max={(props.status.spotify?.timestamps?.end || 0) - (props.status.spotify?.timestamps?.start || 0)}
+						value={currentTime - startTime}
+						max={songDuration}
 						className="w-3/4 rounded-xl [&::-webkit-progress-bar]:rounded-lg [&::-webkit-progress-value]:rounded-lg   [&::-webkit-progress-bar]:bg-slate-300 [&::-webkit-progress-value]:bg-lochmara-400 [&::-moz-progress-bar]:bg-lochmara-400"
 					></progress>
-					<span>{formatTime((props.status.spotify?.timestamps?.end || 0) - (props.status.spotify?.timestamps?.start || 0))}</span>
+					<span>{formatTime(songDuration)}</span>
 				</div>
 			</>
 		);
