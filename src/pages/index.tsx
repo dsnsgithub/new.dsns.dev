@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { FaCloudflare, FaGithub, FaJsSquare, FaPython, FaYoutube, FaLinux, FaGitAlt, FaReact, FaEnvelope } from "react-icons/fa";
-import { useState, useEffect } from "react";
-import { useLanyard } from "react-use-lanyard";
+import { useState, useEffect, RefCallback } from "react";
+import { LanyardData, useLanyard } from "react-use-lanyard";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 
 import rawGames from "./db/gameList.json";
@@ -67,23 +67,100 @@ function cutStrings(string: string, maxLength: number) {
 	}
 }
 
+function DiscordCard(props: { statusVisible: boolean; setStatusVisible: Function; status: LanyardData | undefined; loading: boolean }) {
+	const [currentTime, setCurrentTime] = useState(new Date().getTime());
+	setInterval(() => setCurrentTime(new Date().getTime()), 1000);
+
+	useEffect(() => {
+		setTimeout(() => props.setStatusVisible(true), 500);
+	}, [props]);
+
+	if (props.loading || !props.status?.activities || props.status.activities.length == 0 || !props.statusVisible) {
+		return <></>;
+	}
+
+	const activity = props.status?.activities[props.status?.activities.length - 1];
+	if (!activity) {
+		return <></>;
+	}
+
+	if (activity.name === "Spotify" && props.status.spotify) {
+		return (
+			<>
+				<h3 className="font-bold mb-2">Listening to Spotify</h3>
+
+				<div className="flex items-center space-x-4">
+					<img src={props.status.spotify?.album_art_url} alt="Album Art" className="w-16 h-16 rounded" />
+					<div>
+						<h4>{cutStrings(props.status.spotify?.song, 16)}</h4>
+						<p className="text-sm">by {cutStrings(props.status.spotify?.artist, 16)}</p>
+						<p className="text-sm">on {cutStrings(props.status.spotify?.album, 16)}</p>
+					</div>
+				</div>
+				<div className="flex items-center space-x-2 mt-2">
+					<span>
+						{formatTime(
+							Math.min(currentTime - (props.status.spotify?.timestamps?.start || 0), (props.status.spotify?.timestamps?.end || 0) - (props.status.spotify?.timestamps?.start || 0))
+						)}
+					</span>
+					<progress
+						value={currentTime - (props.status.spotify?.timestamps?.start || 0)}
+						max={(props.status.spotify?.timestamps?.end || 0) - (props.status.spotify?.timestamps?.start || 0)}
+						className="w-3/4 rounded-xl [&::-webkit-progress-bar]:rounded-lg [&::-webkit-progress-value]:rounded-lg   [&::-webkit-progress-bar]:bg-slate-300 [&::-webkit-progress-value]:bg-lochmara-400 [&::-moz-progress-bar]:bg-lochmara-400"
+					></progress>
+					<span>{formatTime((props.status.spotify?.timestamps?.end || 0) - (props.status.spotify?.timestamps?.start || 0))}</span>
+				</div>
+			</>
+		);
+	}
+
+	const internalAssetsLink = "https://cdn.discordapp.com/app-assets/";
+	const internalIconsLink = "https://cdn.discordapp.com/app-icons/";
+	const externalAssetsLink = "https://media.discordapp.net/external/";
+
+	let largeImage = activity.assets?.large_image
+		? activity.assets?.large_image.startsWith("mp:external/")
+			? `${externalAssetsLink}${activity.assets.large_image.replace("mp:external/", "")}`
+			: `${internalAssetsLink}${activity?.application_id}/${activity.assets?.large_image}.png`
+		: null;
+
+	largeImage = gameList[activity.application_id || ""] ? `${internalIconsLink}${activity?.application_id}/${gameList[activity.application_id || ""]}.png` : largeImage;
+
+	let smallImage = activity.assets?.small_image
+		? activity.assets?.small_image.startsWith("mp:external/")
+			? `${externalAssetsLink}${activity.assets.small_image.replace("mp:external/", "")}`
+			: `${internalAssetsLink}${activity?.application_id}/${activity.assets?.small_image}.png`
+		: null;
+
+	return (
+		<div className="flex items-center space-x-4">
+			<div className="flex-shrink-0 relative">
+				{largeImage ? <img src={largeImage} alt="Activity Image" className="w-16 h-16 rounded" /> : <></>}
+				{smallImage && !largeImage ? <img src={smallImage} alt="Activity Image" className="w-16 h-16 rounded" /> : <></>}
+				{smallImage && largeImage ? <img src={smallImage} alt="Activity Image" className="w-6 h-6 rounded right-0 bottom-0 absolute ring-3" /> : <></>}
+			</div>
+
+			<div>
+				<h4 className="font-bold">{activity.name}</h4>
+				<p className="text-sm">{activity.state}</p>
+				<p className="text-sm">{activity.details}</p>
+				<p className="text-sm">{formatTime(currentTime - activity.created_at)} elapsed</p>
+			</div>
+		</div>
+	);
+}
+
 export default function Home() {
-	const [outerStatusDiv] = useAutoAnimate({ duration: 500 });
-	const [outerStatus2Div] = useAutoAnimate({ duration: 500 });
-	const [innerStatusDiv] = useAutoAnimate({ duration: 500 });
+	const [outerBioRef] = useAutoAnimate({ duration: 500 });
+	const [outerStatusRef] = useAutoAnimate({ duration: 500 });
+	const [innerStatusRef] = useAutoAnimate({ duration: 500 });
+
 	const [statusVisible, setStatusVisible] = useState(false);
 
 	const { loading, status } = useLanyard({
 		userId: "342874998375186432",
 		socket: true
 	});
-
-	const [currentTime, setCurrentTime] = useState(new Date().getTime());
-	setInterval(() => setCurrentTime(new Date().getTime()), 1000);
-
-	useEffect(() => {
-		setTimeout(() => setStatusVisible(true), 500);
-	}, []);
 
 	if (status?.activities) {
 		status.activities = status?.activities.filter((activity) => activity.id != "custom");
@@ -94,7 +171,7 @@ export default function Home() {
 			<CustomTags title="Home" description="Check out what I do, and explore some of my projects."></CustomTags>
 
 			<div className="lg:flex lg:flex-row justify-evenly items-center">
-				<div className="flex flex-col justify-center lg:p-8 shadow-xl rounded-xl mt-4 bg-lochmara-200 lg:m-8 m-2" ref={outerStatus2Div}>
+				<div className="flex flex-col justify-center lg:p-8 shadow-xl rounded-xl mt-4 bg-lochmara-200 lg:m-8 m-2" ref={outerBioRef}>
 					<div className="bg-lochmara-100 shadow-xl rounded-xl mb-4 p-6 border-lochmara-300 border-4">
 						<div className="text-4xl font-bold mb-4">Who am I?</div>
 						<div className="text-xl">A full-stack developer with an interest in Minecraft.</div>
@@ -131,109 +208,13 @@ export default function Home() {
 						</div>
 					</div>
 
-					<div ref={outerStatusDiv}>
-						{loading || !status?.activities || status.activities.length == 0 || !statusVisible ? (
-							<></>
-						) : (
-							<div className="bg-lochmara-100 shadow-xl rounded-xl mt-4 p-6 border-lochmara-300 border-4">
-								<div className="text-4xl font-bold mb-4">Status</div>
-								<div ref={innerStatusDiv}>
-									{status.activities[0].name === "Spotify" && status.spotify ? (
-										<>
-											<h3 className="font-bold mb-2">Listening to Spotify</h3>
-
-											<div className="flex items-center space-x-4">
-												<img src={status.spotify?.album_art_url} alt="Album Art" className="w-16 h-16 rounded" />
-												<div>
-													<h4>{cutStrings(status.spotify?.song, 16)}</h4>
-													<p className="text-sm">by {cutStrings(status.spotify?.artist, 16)}</p>
-													<p className="text-sm">on {cutStrings(status.spotify?.album, 16)}</p>
-												</div>
-											</div>
-											<div className="flex items-center space-x-2 mt-2">
-												<span>
-													{formatTime(
-														Math.min(
-															currentTime - (status.spotify?.timestamps?.start || 0),
-															(status.spotify?.timestamps?.end || 0) - (status.spotify?.timestamps?.start || 0)
-														)
-													)}
-												</span>
-												<progress
-													value={currentTime - (status.spotify?.timestamps?.start || 0)}
-													max={(status.spotify?.timestamps?.end || 0) - (status.spotify?.timestamps?.start || 0)}
-													className="w-3/4 rounded-xl [&::-webkit-progress-bar]:rounded-lg [&::-webkit-progress-value]:rounded-lg   [&::-webkit-progress-bar]:bg-slate-300 [&::-webkit-progress-value]:bg-lochmara-400 [&::-moz-progress-bar]:bg-lochmara-400"
-												></progress>
-												<span>{formatTime((status.spotify?.timestamps?.end || 0) - (status.spotify?.timestamps?.start || 0))}</span>
-											</div>
-										</>
-									) : (
-										<div className="flex items-center space-x-4">
-											{status.activities[0].assets?.large_image && status.activities[0].assets?.small_image ? (
-												<div className="flex-shrink-0 relative">
-													<img
-														src={
-															status.activities[0].assets.large_image.startsWith("mp:external/")
-																? `https://media.discordapp.net/external/${status.activities[0].assets.large_image.replace("mp:external/", "")}`
-																: `https://cdn.discordapp.com/app-assets/${status.activities[0]?.application_id}/${status.activities[0].assets?.large_image}.png`
-														}
-														alt="Activity Image"
-														className="w-16 h-16 rounded"
-													/>
-
-													<img
-														src={
-															status.activities[0].assets.small_image.startsWith("mp:external/")
-																? `https://media.discordapp.net/external/${status.activities[0].assets.small_image.replace("mp:external/", "")}`
-																: `https://cdn.discordapp.com/app-assets/${status.activities[0]?.application_id}/${status.activities[0].assets?.small_image}.png`
-														}
-														alt="Activity Image"
-														className="w-6 h-6 rounded right-0 bottom-0 absolute ring-3"
-													/>
-												</div>
-											) : status.activities[0].assets?.large_image ? (
-												<img
-													src={
-														status.activities[0].assets.large_image.startsWith("mp:external/")
-															? `https://media.discordapp.net/external/${status.activities[0].assets.large_image.replace("mp:external/", "")}`
-															: `https://cdn.discordapp.com/app-assets/${status.activities[0]?.application_id}/${status.activities[0].assets?.large_image}.png`
-													}
-													alt="Activity Image"
-													className="w-16 h-16 rounded"
-												/>
-											) : status.activities[0].assets?.small_image ? (
-												<img
-													src={
-														status.activities[0].assets.small_image.startsWith("mp:external/")
-															? `https://media.discordapp.net/external/${status.activities[0].assets.small_image.replace("mp:external/", "")}`
-															: `https://cdn.discordapp.com/app-assets/${status.activities[0]?.application_id}/${status.activities[0].assets?.small_image}.png`
-													}
-													alt="Activity Image"
-													className="w-16 h-16 rounded"
-												/>
-											) : gameList[status.activities[0].application_id || ""] ? (
-												<>
-													<img
-														src={`https://cdn.discordapp.com/app-icons/${status.activities[0]?.application_id}/${gameList[status.activities[0].application_id || ""]}.png`}
-														alt="Activity Image"
-														className="w-16 h-16 rounded"
-													/>
-												</>
-											) : (
-												<></>
-											)}
-
-											<div>
-												<h4 className="font-bold">{status.activities[0].name}</h4>
-												<p className="text-sm">{status.activities[0].state}</p>
-												<p className="text-sm">{status.activities[0].details}</p>
-												<p className="text-sm">{formatTime(currentTime - status.activities[0].created_at)} elapsed</p>
-											</div>
-										</div>
-									)}
-								</div>
+					<div ref={outerStatusRef}>
+						<div className="bg-lochmara-100 shadow-xl rounded-xl mt-4 p-6 border-lochmara-300 border-4">
+							<div className="text-4xl font-bold mb-4">Status</div>
+							<div ref={innerStatusRef}>
+								<DiscordCard status={status} statusVisible={statusVisible} setStatusVisible={setStatusVisible} loading={loading}></DiscordCard>
 							</div>
-						)}
+						</div>
 					</div>
 				</div>
 
