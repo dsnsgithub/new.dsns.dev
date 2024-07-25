@@ -2,6 +2,39 @@
 import { useState } from "react";
 import CustomTags from "./components/CustomTags";
 
+function Video({ url, coverImage }: { url: string; coverImage: string }) {
+	const [videoStream, setVideoStream] = useState<string>("");
+
+	return (
+		<div className="m-4">
+			<button
+				onClick={async (e) => {
+					if (!e.ctrlKey) return window.open(url, "_blank");
+
+					const res = await fetch("https://api.cobalt.tools/api/json", {
+						headers: {
+							accept: "application/json",
+							"content-type": "application/json"
+						},
+						body: `{"url":"${url}","vQuality":"360"}`,
+						method: "POST"
+					});
+
+					const data = await res.json();
+					setVideoStream(data.url);
+				}}
+				className="w-48 h-64 object-cover rounded-lg shadow-lg cursor-pointer"
+			>
+				{videoStream ? (
+					<video controls src={videoStream} autoPlay className="w-48 h-64 object-cover rounded-lg shadow-lg cursor-pointer"></video>
+				) : (
+					<img src={coverImage} alt={`Cover Image`} className="w-48 h-64 object-cover rounded-lg shadow-lg cursor-pointer" />
+				)}
+			</button>
+		</div>
+	);
+}
+
 export default function Viewer() {
 	const [data, setData] = useState<{ url: string; coverImage: string }[]>([]);
 	const [cursor, setCursor] = useState<number>(3000);
@@ -15,7 +48,7 @@ export default function Viewer() {
 		while (count < 25) {
 			try {
 				const response = await fetch(`/api/tiktok?musicID=${videoID}&cursor=${myCursor}`);
-				const jsonData: { success: boolean; data: { url: string; coverImage: string }[] } = await response.json();
+				const jsonData: { success: boolean; data: { url: string; coverImage: string, sampleVideo: string }[] } = await response.json();
 
 				if (!jsonData.success) {
 					return
@@ -40,12 +73,9 @@ export default function Viewer() {
 		<div className="flex flex-wrap justify-center items-center">
 			<CustomTags title="TikTok Video Viewer" description="View TikTok videos from any sound."></CustomTags>
 
+
 			{data.map(({ url, coverImage }, index) => (
-				<div key={index} className="m-4">
-					<a target="_blank" rel="noopener noreferrer" href={url}>
-						<img src={coverImage} alt={`Cover Image ${index + 1}`} className="w-48 h-64 object-cover rounded-lg shadow-lg cursor-pointer" />
-					</a>
-				</div>
+				<Video key={index} url={url} coverImage={coverImage} />
 			))}
 
 			<div className="flex flex-col rounded-xl m-4 p-6 border-lochmara-300 border-4 text-center bg-lochmara-200">
