@@ -9,7 +9,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 		const count = 30;
 		const urls: { url: string; coverImage: string }[] = [];
 
-		const response = await axios.get(`https://www.tiktok.com/api/music/item_list/?aid=1988&count=${count}&cursor=${cursor}&focus_state=false&musicID=${musicID}`);
+		const response = await axios.get(`https://www.tiktok.com/api/music/item_list/?aid=1988&count=${count}&cursor=${cursor}&musicID=${musicID}&device_id=7081889228408063534`);
 		const data = response.data;
 
 		if (!data["itemList"]) {

@@ -129,7 +129,6 @@ async function convertToMp3(inputFile) {
 
 	ffmpeg.setProgress(({ ratio }) => {
 		const percent = round(ratio * 100, 2);
-		console.log(percent);
 		conversionStatus.innerText = percent + "%";
 	});
 

@@ -22,7 +22,6 @@ export default function Viewer() {
 				}
 
 				const newData = jsonData.data.filter((elem) => myData.findIndex((video) => video.url === elem.url) === -1);
-				console.log(newData);
 				count += newData.length;
 
 				setCursor((prevCursor) => prevCursor + 20);
