@@ -68,6 +68,9 @@ function cutStrings(string: string, maxLength: number) {
 }
 
 function DiscordCard(props: { statusVisible: boolean; setStatusVisible: Function; status: LanyardData | undefined; loading: boolean }) {
+	const [outerStatusRef] = useAutoAnimate({ duration: 500 });
+	const [innerStatusRef] = useAutoAnimate({ duration: 500 });
+
 	const [currentTime, setCurrentTime] = useState(new Date().getTime());
 	setInterval(() => setCurrentTime(new Date().getTime()), 1000);
 
@@ -92,28 +95,33 @@ function DiscordCard(props: { statusVisible: boolean; setStatusVisible: Function
 		const spotify = props.status.spotify;
 
 		return (
-			<>
-				<h3 className="font-bold mb-2">Listening to Spotify</h3>
+			<div ref={outerStatusRef}>
+				<div className="bg-lochmara-100 shadow-xl rounded-xl mt-4 p-6 border-lochmara-300 border-4">
+					<div className="text-4xl font-bold mb-4">Status</div>
+					<div ref={innerStatusRef}>
+						<h3 className="font-bold mb-2">Listening to Spotify</h3>
 
-				<div className="flex items-center space-x-4">
-					<img src={spotify.album_art_url} alt="Album Art" className="w-16 h-16 rounded" />
-					<div>
-						<h4>{cutStrings(spotify.song, 16)}</h4>
-						<p className="text-sm">by {cutStrings(spotify.artist, 16)}</p>
-						<p className="text-sm">on {cutStrings(spotify.album, 16)}</p>
+						<div className="flex items-center space-x-4">
+							<img src={spotify.album_art_url} alt="Album Art" className="w-16 h-16 rounded" />
+							<div>
+								<h4>{cutStrings(spotify.song, 16)}</h4>
+								<p className="text-sm">by {cutStrings(spotify.artist, 16)}</p>
+								<p className="text-sm">on {cutStrings(spotify.album, 16)}</p>
+							</div>
+						</div>
+
+						<div className="flex items-center space-x-2 mt-2">
+							<span>{formatTime(Math.min(currentTime - startTime, songDuration))}</span>
+							<progress
+								value={currentTime - startTime}
+								max={songDuration}
+								className="w-3/4 rounded-xl [&::-webkit-progress-bar]:rounded-lg [&::-webkit-progress-value]:rounded-lg   [&::-webkit-progress-bar]:bg-slate-300 [&::-webkit-progress-value]:bg-lochmara-400 [&::-moz-progress-bar]:bg-lochmara-400"
+							></progress>
+							<span>{formatTime(songDuration)}</span>
+						</div>
 					</div>
 				</div>
-
-				<div className="flex items-center space-x-2 mt-2">
-					<span>{formatTime(Math.min(currentTime - startTime, songDuration))}</span>
-					<progress
-						value={currentTime - startTime}
-						max={songDuration}
-						className="w-3/4 rounded-xl [&::-webkit-progress-bar]:rounded-lg [&::-webkit-progress-value]:rounded-lg   [&::-webkit-progress-bar]:bg-slate-300 [&::-webkit-progress-value]:bg-lochmara-400 [&::-moz-progress-bar]:bg-lochmara-400"
-					></progress>
-					<span>{formatTime(songDuration)}</span>
-				</div>
-			</>
+			</div>
 		);
 	}
 
@@ -136,18 +144,25 @@ function DiscordCard(props: { statusVisible: boolean; setStatusVisible: Function
 		: null;
 
 	return (
-		<div className="flex items-center space-x-4">
-			<div className="flex-shrink-0 relative">
-				{largeImage ? <img src={largeImage} alt="Activity Image" className="w-16 h-16 rounded" /> : <></>}
-				{smallImage && !largeImage ? <img src={smallImage} alt="Activity Image" className="w-16 h-16 rounded" /> : <></>}
-				{smallImage && largeImage ? <img src={smallImage} alt="Activity Image" className="w-6 h-6 rounded right-0 bottom-0 absolute ring-3" /> : <></>}
-			</div>
+		<div ref={outerStatusRef}>
+			<div className="bg-lochmara-100 shadow-xl rounded-xl mt-4 p-6 border-lochmara-300 border-4">
+				<div className="text-4xl font-bold mb-4">Status</div>
+				<div ref={innerStatusRef}>
+					<div className="flex items-center space-x-4">
+						<div className="flex-shrink-0 relative">
+							{largeImage ? <img src={largeImage} alt="Activity Image" className="w-16 h-16 rounded" /> : <></>}
+							{smallImage && !largeImage ? <img src={smallImage} alt="Activity Image" className="w-16 h-16 rounded" /> : <></>}
+							{smallImage && largeImage ? <img src={smallImage} alt="Activity Image" className="w-6 h-6 rounded right-0 bottom-0 absolute ring-3" /> : <></>}
+						</div>
 
-			<div>
-				<h4 className="font-bold">{activity.name}</h4>
-				<p className="text-sm">{activity.state}</p>
-				<p className="text-sm">{activity.details}</p>
-				<p className="text-sm">{formatTime(currentTime - activity.created_at)} elapsed</p>
+						<div>
+							<h4 className="font-bold">{activity.name}</h4>
+							<p className="text-sm">{activity.state}</p>
+							<p className="text-sm">{activity.details}</p>
+							<p className="text-sm">{formatTime(currentTime - activity.created_at)} elapsed</p>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	);
@@ -155,8 +170,6 @@ function DiscordCard(props: { statusVisible: boolean; setStatusVisible: Function
 
 export default function Home() {
 	const [outerBioRef] = useAutoAnimate({ duration: 500 });
-	const [outerStatusRef] = useAutoAnimate({ duration: 500 });
-	const [innerStatusRef] = useAutoAnimate({ duration: 500 });
 
 	const [statusVisible, setStatusVisible] = useState(false);
 
@@ -211,14 +224,7 @@ export default function Home() {
 						</div>
 					</div>
 
-					<div ref={outerStatusRef}>
-						<div className="bg-lochmara-100 shadow-xl rounded-xl mt-4 p-6 border-lochmara-300 border-4">
-							<div className="text-4xl font-bold mb-4">Status</div>
-							<div ref={innerStatusRef}>
-								<DiscordCard status={status} statusVisible={statusVisible} setStatusVisible={setStatusVisible} loading={loading}></DiscordCard>
-							</div>
-						</div>
-					</div>
+					<DiscordCard status={status} statusVisible={statusVisible} setStatusVisible={setStatusVisible} loading={loading}></DiscordCard>
 				</div>
 
 				<div className="flex flex-col justify-center p-6 lg:p-8 shadow-xl rounded-xl bg-lochmara-200 m-2 mt-8 lg:m-8">
